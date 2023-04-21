@@ -4,25 +4,19 @@ namespace ProyectoOpenTK.GameLogic
 {
     public class Car
     {
-        private float initialX;
-        private float initialY;
-        private float initialZ;
-
         private float ancho;
         private float alto;
         private float profundidad;
 
-        // public Punto origen;
+        public Punto origen;
 
-        public Car(float ancho, float alto, float profundidad)
+        public Car(Punto origen, float ancho, float alto, float profundidad)
         {
             this.ancho = ancho;
             this.alto = alto;
             this.profundidad = profundidad;
 
-            this.initialX = 0;
-            this.initialY = 0;
-            this.initialZ = 0;
+            this.origen = origen;
         }
 
         public void Dibujar()
@@ -31,9 +25,9 @@ namespace ProyectoOpenTK.GameLogic
             PrimitiveType primitiveType = PrimitiveType.LineLoop;
             GL.Color3(1.0, 1.0, 0.0); //amarillo
 
-            this.initialX = 15;
-            this.initialY = 0;
-            this.initialZ = 0;
+            origen.X = 15;
+            origen.Y = 0;
+            origen.Z = 0;
             //paredes
             caraFrontal(primitiveType);
             caraPosterior(primitiveType);
@@ -42,9 +36,8 @@ namespace ProyectoOpenTK.GameLogic
             caraSuperior(primitiveType);
             caraInferior(primitiveType);
 
-            // this.initialX = 0;
-            this.initialY = this.alto * 2;
-            // this.initialZ = 0;
+            origen.Y = this.alto * 2;
+
             //techo
             caraFrontalTecho(primitiveType);
             caraPosteriorTecho(primitiveType);
@@ -59,10 +52,10 @@ namespace ProyectoOpenTK.GameLogic
             //
             GL.Begin(primitiveType);
             GL.Color3(0.0, 1.0, 0.0); //verde
-            GL.Vertex3(this.initialX - ancho, this.initialY + alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY + alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY - alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX - ancho, this.initialY - alto, this.initialZ + profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y + alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y + alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y - alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y - alto, origen.Z + profundidad);
             GL.End();
         }
 
@@ -71,10 +64,10 @@ namespace ProyectoOpenTK.GameLogic
             //
             GL.Begin(primitiveType);
             GL.Color3(1, 0.2, 1); //rosado
-            GL.Vertex3(this.initialX - ancho, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY - alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX - ancho, this.initialY - alto, this.initialZ - profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y - alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y - alto, origen.Z - profundidad);
             GL.End();
         }
 
@@ -83,10 +76,10 @@ namespace ProyectoOpenTK.GameLogic
             GL.Begin(primitiveType);
             //GL.Color4(Color.Aqua);
             GL.Color3(1.0, 1.0, 0.0); //amarillo
-            GL.Vertex3(this.initialX + ancho, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY + alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY - alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY - alto, this.initialZ - profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y + alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y - alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y - alto, origen.Z - profundidad);
             GL.End();
         }
 
@@ -94,10 +87,10 @@ namespace ProyectoOpenTK.GameLogic
         {
             GL.Begin(primitiveType);
             GL.Color3(1, 0.0, 0.0); //rojo
-            GL.Vertex3(this.initialX - ancho, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX - ancho, this.initialY + alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX - ancho, this.initialY - alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX - ancho, this.initialY - alto, this.initialZ - profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y + alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y - alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y - alto, origen.Z - profundidad);
             GL.End();
         }
 
@@ -106,10 +99,10 @@ namespace ProyectoOpenTK.GameLogic
             //
             GL.Begin(primitiveType);
             GL.Color3(0.0, 0.0, 1.0); //azul;
-            GL.Vertex3(this.initialX - ancho, this.initialY - alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY - alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY - alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX - ancho, this.initialY - alto, this.initialZ + profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y - alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y - alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y - alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y - alto, origen.Z + profundidad);
             GL.End();
         }
 
@@ -118,10 +111,10 @@ namespace ProyectoOpenTK.GameLogic
             //
             GL.Begin(primitiveType);
             GL.Color3(0, 1, 1.3); //azul;
-            GL.Vertex3(this.initialX - ancho, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho, this.initialY + alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX - ancho, this.initialY + alto, this.initialZ + profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho, origen.Y + alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X - ancho, origen.Y + alto, origen.Z + profundidad);
             GL.End();
         }
 
@@ -132,10 +125,10 @@ namespace ProyectoOpenTK.GameLogic
             GL.Begin(primitiveType);
             //GL.Color4(Color.Aqua);
             GL.Color3(1.0, 1.0, 0.0); //amarillo
-            GL.Vertex3(this.initialX - ancho * .7, this.initialY - alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX + ancho * .7, this.initialY - alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX + ancho * 0.3, this.initialY + alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX - ancho * .3, this.initialY + alto, this.initialZ + profundidad);
+            GL.Vertex3(origen.X - ancho * .7, origen.Y - alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X + ancho * .7, origen.Y - alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X + ancho * 0.3, origen.Y + alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X - ancho * .3, origen.Y + alto, origen.Z + profundidad);
             GL.End();
         }
 
@@ -144,10 +137,10 @@ namespace ProyectoOpenTK.GameLogic
             GL.Begin(primitiveType);
             //GL.Color4(Color.Aqua);
             GL.Color3(1.0, 1.0, 0.0); //amarillo
-            GL.Vertex3(this.initialX - ancho * .7, this.initialY - alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho * .7, this.initialY - alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho * .3, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX - ancho * .3, this.initialY + alto, this.initialZ - profundidad);
+            GL.Vertex3(origen.X - ancho * .7, origen.Y - alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho * .7, origen.Y - alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho * .3, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X - ancho * .3, origen.Y + alto, origen.Z - profundidad);
             GL.End();
         }
 
@@ -155,20 +148,20 @@ namespace ProyectoOpenTK.GameLogic
         {
             GL.Begin(primitiveType);
             GL.Color3(1.0, 1.0, 0.0); //amarillo
-            GL.Vertex3(this.initialX + ancho, this.initialY - alto, this.initialZ + profundidad); //P1
-            GL.Vertex3(this.initialX + ancho, this.initialY - alto, this.initialZ - profundidad); //P2
-            GL.Vertex3(this.initialX, this.initialY + alto, this.initialZ - profundidad); //P3
-            GL.Vertex3(this.initialX, this.initialY + alto, this.initialZ + profundidad); //P4
+            GL.Vertex3(origen.X + ancho, origen.Y - alto, origen.Z + profundidad); //P1
+            GL.Vertex3(origen.X + ancho, origen.Y - alto, origen.Z - profundidad); //P2
+            GL.Vertex3(origen.X, origen.Y + alto, origen.Z - profundidad); //P3
+            GL.Vertex3(origen.X, origen.Y + alto, origen.Z + profundidad); //P4
             GL.End();
         }
 
         private void caraLateralIzquierdaTecho(PrimitiveType primitiveType)
         {
             GL.Begin(primitiveType);
-            GL.Vertex3(this.initialX - ancho, this.initialY - alto, this.initialZ + profundidad); //P1
-            GL.Vertex3(this.initialX - ancho, this.initialY - alto, this.initialZ - profundidad); //P2
-            GL.Vertex3(this.initialX, this.initialY + alto, this.initialZ - profundidad); //P3
-            GL.Vertex3(this.initialX, this.initialY + alto, this.initialZ + profundidad); //P4
+            GL.Vertex3(origen.X - ancho, origen.Y - alto, origen.Z + profundidad); //P1
+            GL.Vertex3(origen.X - ancho, origen.Y - alto, origen.Z - profundidad); //P2
+            GL.Vertex3(origen.X, origen.Y + alto, origen.Z - profundidad); //P3
+            GL.Vertex3(origen.X, origen.Y + alto, origen.Z + profundidad); //P4
             GL.End();
         }
 
@@ -177,10 +170,10 @@ namespace ProyectoOpenTK.GameLogic
             //
             GL.Begin(primitiveType);
             // GL.Color3(1, 0, 0); //azul;
-            GL.Vertex3(this.initialX - ancho * .7, this.initialY - alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho * .7, this.initialY - alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho * .7, this.initialY - alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX - ancho * .7, this.initialY - alto, this.initialZ + profundidad);
+            GL.Vertex3(origen.X - ancho * .7, origen.Y - alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho * .7, origen.Y - alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho * .7, origen.Y - alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X - ancho * .7, origen.Y - alto, origen.Z + profundidad);
             GL.End();
         }
 
@@ -189,10 +182,10 @@ namespace ProyectoOpenTK.GameLogic
             //
             GL.Begin(primitiveType);
             // GL.Color3(0, 1, 0); //azul;
-            GL.Vertex3(this.initialX - ancho * .3, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho * .3, this.initialY + alto, this.initialZ - profundidad);
-            GL.Vertex3(this.initialX + ancho * .3, this.initialY + alto, this.initialZ + profundidad);
-            GL.Vertex3(this.initialX - ancho * .3, this.initialY + alto, this.initialZ + profundidad);
+            GL.Vertex3(origen.X - ancho * .3, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho * .3, origen.Y + alto, origen.Z - profundidad);
+            GL.Vertex3(origen.X + ancho * .3, origen.Y + alto, origen.Z + profundidad);
+            GL.Vertex3(origen.X - ancho * .3, origen.Y + alto, origen.Z + profundidad);
             GL.End();
         }
 

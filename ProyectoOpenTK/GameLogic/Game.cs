@@ -10,6 +10,12 @@ namespace ProyectoOpenTK.GameLogic
         private House house;
         private Car car;
 
+        private House house2;
+        private Car car2;
+
+        private House house3;
+        private Car car3;
+
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
         }
@@ -22,8 +28,15 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnLoad(EventArgs e)
         {
-            house = new House(7, 7, 10);
-            car = new Car(5, 3,5);
+            house = new House(new Punto(), 7, 7, 10);
+            car = new Car(new Punto(5, 5 ,5), 5, 3,5);
+
+            
+            house2 = new House(new Punto(10, 10 , 5), 7, 7, 10);
+            car2 = new Car(new Punto(15, 10 ,7), 5, 3,5);
+
+            // house3 = new House(new Punto(), 7, 7, 10);
+            // car3 = new Car(new Punto(5, 5 ,5), 5, 3,5);
 
             base.OnLoad(e);
         }
@@ -45,8 +58,13 @@ namespace ProyectoOpenTK.GameLogic
             GL.LoadIdentity();
             //-----------------------
 
-            this.house.Dibujar();
-            this.car.Dibujar();
+            // this.house.Dibujar();
+            // this.car.Dibujar();
+            
+            // this.house2.Dibujar();
+            this.car2.Dibujar();
+            
+            
             //-----------------------
             Context.SwapBuffers();
             base.OnRenderFrame(e);
