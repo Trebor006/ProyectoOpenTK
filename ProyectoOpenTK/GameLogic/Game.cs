@@ -7,7 +7,8 @@ namespace ProyectoOpenTK.GameLogic
 {
     public class Game : GameWindow
     {
-        private Triangulo triangulo;
+        private House house;
+        private Car car;
 
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
@@ -21,7 +22,9 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnLoad(EventArgs e)
         {
-            triangulo = new Triangulo(20, 20);
+            house = new House(7, 7, 10);
+            car = new Car(5, 3,5);
+
             base.OnLoad(e);
         }
 
@@ -41,7 +44,9 @@ namespace ProyectoOpenTK.GameLogic
             GL.Enable(EnableCap.DepthTest);
             GL.LoadIdentity();
             //-----------------------
-            this.triangulo.Dibujar();
+
+            this.house.Dibujar();
+            this.car.Dibujar();
             //-----------------------
             Context.SwapBuffers();
             base.OnRenderFrame(e);
