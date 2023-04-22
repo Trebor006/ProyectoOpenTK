@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
@@ -7,17 +8,11 @@ namespace ProyectoOpenTK.GameLogic
 {
     public class Game : GameWindow
     {
-        private House house;
-        private Car car;
-
-        private House house2;
-        private Car car2;
-
-        private House house3;
-        private Car car3;
+        private IDictionary<string, Escenario> escenarios;
 
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
+
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -28,15 +23,10 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnLoad(EventArgs e)
         {
-            house = new House(new Punto(), 7, 7, 10);
-            car = new Car(new Punto(5, 5 ,5), 5, 3,5);
-
-            
-            house2 = new House(new Punto(10, 10 , 5), 7, 7, 10);
-            car2 = new Car(new Punto(15, 10 ,7), 5, 3,5);
-
-            // house3 = new House(new Punto(), 7, 7, 10);
-            // car3 = new Car(new Punto(5, 5 ,5), 5, 3,5);
+            // escenarios = new Dictionary<string, Escenario>();
+            this.escenarios = new Dictionary<string, Escenario>();
+            var escenario = new Escenario();
+            this.escenarios.Add("juego", escenario);
 
             base.OnLoad(e);
         }
@@ -44,8 +34,10 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnUnload(EventArgs e)
         {
+            GL.Rotate(20, 1, 1, 0);
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             //GL.DeleteBuffer(VertexBufferObject);
+
             base.OnUnload(e);
         }
 
@@ -53,18 +45,19 @@ namespace ProyectoOpenTK.GameLogic
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             //GL.DepthMask(true);
+            // GL.Rotate(20, 1, 1, 0);
+
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Enable(EnableCap.DepthTest);
             GL.LoadIdentity();
             //-----------------------
 
-            // this.house.Dibujar();
-            // this.car.Dibujar();
-            
-            // this.house2.Dibujar();
-            this.car2.Dibujar();
-            
-            
+            foreach (var escenario in escenarios)
+            {
+                escenario.Value.Dibujar();
+            }
+
+
             //-----------------------
             Context.SwapBuffers();
             base.OnRenderFrame(e);

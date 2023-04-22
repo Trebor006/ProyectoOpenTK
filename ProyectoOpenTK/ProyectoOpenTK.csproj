@@ -42,10 +42,10 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="GameLogic\Car.cs" />
+        <Compile Include="GameLogic\Actor.cs" />
+        <Compile Include="GameLogic\Escenario.cs" />
         <Compile Include="GameLogic\Game.cs" />
-        <Compile Include="GameLogic\House.cs" />
-        <Compile Include="GameLogic\Punto.cs" />
+        <Compile Include="GameLogic\Superficie.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
