@@ -3,14 +3,14 @@ using OpenTK.Graphics.OpenGL;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Escenario : Drawable
+    public class Stage : Drawable
     {
-        private IDictionary<string, Actor> actores;
+        private IDictionary<string, GraphicObject> actores;
 
-        public Escenario()
+        public Stage()
         {
-            actores = new Dictionary<string, Actor>();
-            actores.Add("Actor", new Actor());
+            actores = new Dictionary<string, GraphicObject>();
+            actores.Add("GraphicObject", new GraphicObject());
         }
 
         public void Draw()

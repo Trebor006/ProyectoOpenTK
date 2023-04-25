@@ -3,7 +3,7 @@
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Superficie : Drawable
+    public class Part : Drawable
     {
         private int VAO;
         private int VBO;
@@ -12,7 +12,7 @@ namespace ProyectoOpenTK.GameLogic
         private float[] vertices;
 
 
-        public Superficie(float[] vertices)
+        public Part(float[] vertices)
         {
             this.vertices = vertices;
         }

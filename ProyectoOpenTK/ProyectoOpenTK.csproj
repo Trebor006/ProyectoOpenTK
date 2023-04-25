@@ -42,11 +42,11 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="GameLogic\Actor.cs" />
+        <Compile Include="GameLogic\GraphicObject.cs" />
         <Compile Include="GameLogic\Drawable.cs" />
-        <Compile Include="GameLogic\Escenario.cs" />
+        <Compile Include="GameLogic\Stage.cs" />
         <Compile Include="GameLogic\Game.cs" />
-        <Compile Include="GameLogic\Superficie.cs" />
+        <Compile Include="GameLogic\Part.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

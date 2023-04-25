@@ -8,7 +8,7 @@ namespace ProyectoOpenTK.GameLogic
 {
     public class Game : GameWindow
     {
-        private IDictionary<string, Escenario> escenarios;
+        private IDictionary<string, Stage> escenarios;
 
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
@@ -22,9 +22,9 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnLoad(EventArgs e)
         {
-            // escenarios = new Dictionary<string, Escenario>();
-            this.escenarios = new Dictionary<string, Escenario>();
-            var escenario = new Escenario();
+            // escenarios = new Dictionary<string, Stage>();
+            this.escenarios = new Dictionary<string, Stage>();
+            var escenario = new Stage();
             this.escenarios.Add("juego", escenario);
 
             base.OnLoad(e);

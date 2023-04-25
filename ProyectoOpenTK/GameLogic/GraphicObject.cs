@@ -2,14 +2,14 @@
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Actor : Drawable
+    public class GraphicObject : Drawable
     {
-        private IDictionary<string, Superficie> superficies;
+        private IDictionary<string, Part> superficies;
 
-        public Actor()
+        public GraphicObject()
         {
-            superficies = new Dictionary<string, Superficie>();
-            superficies.Add("frontal", new Superficie(new float[]
+            superficies = new Dictionary<string, Part>();
+            superficies.Add("frontal", new Part(new float[]
                 {
                     5f, 5f, 5f,
                     5f, -5f, 5f,
@@ -18,7 +18,7 @@ namespace ProyectoOpenTK.GameLogic
                 })
             );
 
-            superficies.Add("posterior", new Superficie(new float[]
+            superficies.Add("posterior", new Part(new float[]
                 {
                     5f, 5f, -5f,
                     5f, -5f, -5f,
@@ -27,7 +27,7 @@ namespace ProyectoOpenTK.GameLogic
                 })
             );
 
-            superficies.Add("lateralDerecho", new Superficie(new float[]
+            superficies.Add("lateralDerecho", new Part(new float[]
                 {
                     5f, 5f, 5f,
                     5f, -5f, 5f,
@@ -36,7 +36,7 @@ namespace ProyectoOpenTK.GameLogic
                 })
             );
 
-            superficies.Add("lateralIzquierdo", new Superficie(new float[]
+            superficies.Add("lateralIzquierdo", new Part(new float[]
                 {
                     -5f, -5f, 5f,
                     -5f, 5f, 5f,
@@ -45,7 +45,7 @@ namespace ProyectoOpenTK.GameLogic
                 })
             );
 
-            superficies.Add("superior", new Superficie(new float[]
+            superficies.Add("superior", new Part(new float[]
                 {
                     5f, 5f, 5f,
                     -5f, 5f, 5f,
@@ -54,7 +54,7 @@ namespace ProyectoOpenTK.GameLogic
                 })
             );
 
-            superficies.Add("inferior", new Superficie(new float[]
+            superficies.Add("inferior", new Part(new float[]
                 {
                     5f, -5f, 5f,
                     -5f, -5f, 5f,
