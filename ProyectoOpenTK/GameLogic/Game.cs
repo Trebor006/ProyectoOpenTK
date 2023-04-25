@@ -8,10 +8,11 @@ namespace ProyectoOpenTK.GameLogic
 {
     public class Game : GameWindow
     {
-        private IDictionary<string, Stage> escenarios;
+        private Dictionary<string, Stage> stages;
 
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
+            this.stages = new Dictionary<string, Stage>();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -22,11 +23,6 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnLoad(EventArgs e)
         {
-            // escenarios = new Dictionary<string, Stage>();
-            this.escenarios = new Dictionary<string, Stage>();
-            var escenario = new Stage();
-            this.escenarios.Add("juego", escenario);
-
             base.OnLoad(e);
         }
 
@@ -51,9 +47,9 @@ namespace ProyectoOpenTK.GameLogic
             GL.LoadIdentity();
             //-----------------------
 
-            foreach (var escenario in escenarios)
+            foreach (var stages in stages)
             {
-                escenario.Value.Draw();
+                stages.Value.Draw();
             }
 
 
@@ -74,6 +70,11 @@ namespace ProyectoOpenTK.GameLogic
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadIdentity();
             base.OnResize(e);
+        }
+
+        public void AddStage(string name, Stage stage)
+        {
+            this.stages.Add(name, stage);
         }
     }
 }

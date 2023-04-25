@@ -1,75 +1,40 @@
 ﻿using System.Collections.Generic;
+using OpenTK;
 
 namespace ProyectoOpenTK.GameLogic
 {
     public class GraphicObject : Drawable
     {
-        private IDictionary<string, Part> superficies;
+        public Dictionary<string, Part> parts;
+
+        public Point origin { get; set; }
+        public Point position { get; set; }
 
         public GraphicObject()
         {
-            superficies = new Dictionary<string, Part>();
-            superficies.Add("frontal", new Part(new float[]
-                {
-                    5f, 5f, 5f,
-                    5f, -5f, 5f,
-                    -5f, -5f, 5f,
-                    -5f, 5f, 5f
-                })
-            );
+            parts = new Dictionary<string, Part>();
+            this.origin = Point.MapFrom(Vector3.Zero);
+            this.position = Point.MapFrom(Vector3.Zero);
+        }
 
-            superficies.Add("posterior", new Part(new float[]
-                {
-                    5f, 5f, -5f,
-                    5f, -5f, -5f,
-                    -5f, -5f, -5f,
-                    -5f, 5f, -5f,
-                })
-            );
-
-            superficies.Add("lateralDerecho", new Part(new float[]
-                {
-                    5f, 5f, 5f,
-                    5f, -5f, 5f,
-                    5f, -5f, -5f,
-                    5f, 5f, -5f,
-                })
-            );
-
-            superficies.Add("lateralIzquierdo", new Part(new float[]
-                {
-                    -5f, -5f, 5f,
-                    -5f, 5f, 5f,
-                    -5f, 5f, -5f,
-                    -5f, -5f, -5f,
-                })
-            );
-
-            superficies.Add("superior", new Part(new float[]
-                {
-                    5f, 5f, 5f,
-                    -5f, 5f, 5f,
-                    -5f, 5f, -5f,
-                    5f, 5f, -5f,
-                })
-            );
-
-            superficies.Add("inferior", new Part(new float[]
-                {
-                    5f, -5f, 5f,
-                    -5f, -5f, 5f,
-                    -5f, -5f, -5f,
-                    5f, -5f, -5f,
-                })
-            );
+        public GraphicObject(Point origin, Point position, Dictionary<string, Part> parts)
+        {
+            this.parts = parts;
+            this.origin = origin;
+            this.position = position;
         }
 
         public void Draw()
         {
-            foreach (var superficie in superficies)
+            foreach (var part in parts)
             {
-                superficie.Value.Draw();
+                part.Value.Draw();
             }
+        }
+
+        public void AddPart(string name, Part part)
+        {
+            this.parts.Add(name, part);
         }
     }
 }

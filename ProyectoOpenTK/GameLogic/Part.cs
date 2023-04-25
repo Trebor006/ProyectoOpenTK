@@ -1,22 +1,30 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using Newtonsoft.Json;
+using OpenTK;
+using OpenTK.Graphics.OpenGL;
 
 
 namespace ProyectoOpenTK.GameLogic
 {
     public class Part : Drawable
     {
+        [JsonIgnore]
         private int VAO;
+        [JsonIgnore]
         private int VBO;
+
+        [JsonIgnore]
         private int vertexCount;
 
-        private float[] vertices;
+        public float[] vertices { get; set; }
 
+        public Point origin { get; set; }
+        public Point position { get; set; }
 
-        public Part(float[] vertices)
+        public Part(float[] vertices, Point origin)
         {
             this.vertices = vertices;
+            this.origin = origin;
         }
-
 
         public void Draw()
         {
@@ -41,7 +49,6 @@ namespace ProyectoOpenTK.GameLogic
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
             vertexCount = vertices.Length / 3;
-
 
             // Activar el VAO y dibujar la superficie
             GL.BindVertexArray(VAO);
