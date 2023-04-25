@@ -3,7 +3,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Escenario
+    public class Escenario : Drawable
     {
         private IDictionary<string, Actor> actores;
 
@@ -13,13 +13,13 @@ namespace ProyectoOpenTK.GameLogic
             actores.Add("Actor", new Actor());
         }
 
-        public void Dibujar()
+        public void Draw()
         {
             GL.Rotate(20, 1, 1, 0);
 
             foreach (var actores in actores)
             {
-                actores.Value.Dibujar();
+                actores.Value.Draw();
             }
         }
     }

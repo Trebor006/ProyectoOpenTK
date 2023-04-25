@@ -2,7 +2,7 @@
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Actor
+    public class Actor : Drawable
     {
         private IDictionary<string, Superficie> superficies;
 
@@ -64,11 +64,11 @@ namespace ProyectoOpenTK.GameLogic
             );
         }
 
-        public void Dibujar()
+        public void Draw()
         {
             foreach (var superficie in superficies)
             {
-                superficie.Value.Dibujar();
+                superficie.Value.Draw();
             }
         }
     }

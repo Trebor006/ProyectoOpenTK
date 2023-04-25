@@ -12,7 +12,6 @@ namespace ProyectoOpenTK.GameLogic
 
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
-
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -54,7 +53,7 @@ namespace ProyectoOpenTK.GameLogic
 
             foreach (var escenario in escenarios)
             {
-                escenario.Value.Dibujar();
+                escenario.Value.Draw();
             }
 
 

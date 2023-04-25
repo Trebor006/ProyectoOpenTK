@@ -3,7 +3,7 @@
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Superficie
+    public class Superficie : Drawable
     {
         private int VAO;
         private int VBO;
@@ -18,7 +18,7 @@ namespace ProyectoOpenTK.GameLogic
         }
 
 
-        public void Dibujar()
+        public void Draw()
         {
             // Crear un nuevo objeto de vértices
             VBO = GL.GenBuffer();

@@ -43,6 +43,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="GameLogic\Actor.cs" />
+        <Compile Include="GameLogic\Drawable.cs" />
         <Compile Include="GameLogic\Escenario.cs" />
         <Compile Include="GameLogic\Game.cs" />
         <Compile Include="GameLogic\Superficie.cs" />
