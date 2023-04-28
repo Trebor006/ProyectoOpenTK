@@ -95,5 +95,37 @@ namespace ProyectoOpenTK.GameLogic
                 objects.Value.moveToRight();
             }
         }
+        
+        public void rotateUpY()
+        {
+            foreach (var objects in objects)
+            {
+                objects.Value.rotateUpY();
+            }
+        }
+
+        public void rotateDownY()
+        {
+            foreach (var objects in objects)
+            {
+                objects.Value.rotateDownY();
+            }
+        }
+
+        public void rotateRightX()
+        {
+            foreach (var objects in objects)
+            {
+                objects.Value.rotateRightX();
+            }
+        }
+
+        public void rotateLeftX()
+        {
+            foreach (var objects in objects)
+            {
+                objects.Value.rotateLeftX();
+            }
+        }
     }
 }

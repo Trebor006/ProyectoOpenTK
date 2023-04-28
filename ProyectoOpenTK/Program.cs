@@ -12,8 +12,8 @@ namespace ProyectoOpenTK
         public static void Main(string[] args)
         {
             Game juego = new Game(800, 600, "Demo OpenTK");
-            juego.stages = LoadFromJson();
-            // juego.stages = LoadStage();
+            // juego.stages = LoadFromJson();
+            juego.stages = LoadStage();
             // FileHelper.mapToJson(juego.stages);
             juego.Run(60);
         }
@@ -26,43 +26,61 @@ namespace ProyectoOpenTK
         public static Dictionary<string, Stage> LoadStage()
         {
             var originStage = Vector3.Zero;
-
             var originParedes = Vector3.Zero;
-            var frontal = new Part(new float[] { 5f, 5f, 5f, 5f, -5f, 5f, -5f, -5f, 5f, -5f, 5f, 5f },
-                Point.MapFrom(originParedes));
-            var posterior = new Part(new float[] { 5f, 5f, -5f, 5f, -5f, -5f, -5f, -5f, -5f, -5f, 5f, -5f },
-                Point.MapFrom(originParedes));
-            var lateralDerecho = new Part(new float[] { 5f, 5f, 5f, 5f, -5f, 5f, 5f, -5f, -5f, 5f, 5f, -5f },
-                Point.MapFrom(originParedes));
-            var lateralIzquierdo = new Part(new float[] { -5f, -5f, 5f, -5f, 5f, 5f, -5f, 5f, -5f, -5f, -5f, -5f },
-                Point.MapFrom(originParedes));
-            var superior = new Part(new float[] { 5f, 5f, 5f, -5f, 5f, 5f, -5f, 5f, -5f, 5f, 5f, -5f },
-                Point.MapFrom(originParedes));
-            var inferior = new Part(new float[] { 5f, -5f, 5f, -5f, -5f, 5f, -5f, -5f, -5f, 5f, -5f, -5f },
-                Point.MapFrom(originParedes));
 
-            var originTecho = new Vector3(0, 0, 0);
+            var vertices = new float[]
+            {
+                5f, 5f, 5f, //0
+                5f, -5f, 5f, //1
+                -5f, -5f, 5f, //2
+                -5f, 5f, 5f, //3
+                5f, 5f, -5f, //4
+                5f, -5f, -5f, //5
+                -5f, -5f, -5f, //6
+                -5f, 5f, -5f, //7
+                0f, 5f, 5f, //8
+                0f, 5f, -5f, //9
+                0f, 5f, -5f, //10
+            };
 
-            var caraFrontalTecho = new Part(new float[] { -5, -5, 5, 5, -5, 5, 0, 5, 5, }, Point.MapFrom(originTecho));
-            var caraPosteriorTecho =
-                new Part(new float[] { -5, -5, -5, 5, -5, -5, 0, 5, -5 }, Point.MapFrom(originTecho));
-            var caraLateralDerechaTecho = new Part(new float[] { 5, -5, 5, 5, -5, -5, 0, 5, -5, 0, 5, 5, },
-                Point.MapFrom(originTecho));
-            var caraLateralIzquierdaTecho = new Part(
-                new float[] { 0 - 5, -5, 0 + 5, 0 - 5, -5, 0 - 5, 0, 5, 0 - 5, 0, 5, 0 + 5, },
-                Point.MapFrom(originTecho));
-            var caraInferiorTecho = new Part(new float[] { -5, -5, 0 - 5, 5, -5, 0 - 5, +5, -5, 0 + 5, -5, -5, 0 + 5 },
-                Point.MapFrom(originTecho));
+            int[] indicesFrontal = new[] { 0, 1, 2, 3 };
+            int[] indicesPosterior = new[] { 4, 5, 6, 7 };
+            int[] indicesLateralDerecho = new[] { 0, 1, 5, 4 };
+            int[] indicesLateralIzquierdo = new[] { 2, 3, 7, 6 };
+            int[] indicesSuperior = new[] { 0, 3, 7, 4 };
+            int[] indicesInferor = new[] { 1, 2, 6, 5 };
+
+            int[] indicesCaraFrontalTecho = new[] { 2, 1, 8 };
+            int[] indicesCaraPosteriorTecho = new[] { 6, 5, 9 };
+            int[] indicesCaraLateralDerechaTecho = new[] { 1, 5, 10, 8 };
+            int[] indicesCaraLateralIzquierdaTecho = new[] { 2, 6, 9, 8 };
+            int[] indicesCaraInferiorTecho = new[] { 6, 5, 2 };
+
+            var frontal = new Part(vertices, indicesFrontal, Point.MapFrom(originParedes));
+            var posterior = new Part(vertices, indicesPosterior, Point.MapFrom(originParedes));
+            var lateralDerecho = new Part(vertices, indicesLateralDerecho, Point.MapFrom(originParedes));
+            var lateralIzquierdo = new Part(vertices, indicesLateralIzquierdo, Point.MapFrom(originParedes));
+
+            var superior = new Part(vertices, indicesSuperior, Point.MapFrom(originParedes));
+            var inferior = new Part(vertices, indicesInferor, Point.MapFrom(originParedes));
+
+            var originTecho = new Vector3(0, 10, 0);
+
+            var caraFrontalTecho = new Part(vertices, indicesCaraFrontalTecho, Point.MapFrom(originTecho));
+            var caraPosteriorTecho = new Part(vertices, indicesCaraPosteriorTecho, Point.MapFrom(originTecho));
+            var caraLateralDerechaTecho = new Part(vertices, indicesCaraLateralDerechaTecho, Point.MapFrom(originTecho));
+            var caraLateralIzquierdaTecho = new Part(vertices, indicesCaraLateralIzquierdaTecho, Point.MapFrom(originTecho));
+            var caraInferiorTecho = new Part(vertices, indicesCaraInferiorTecho, Point.MapFrom(originTecho));
 
             var houseAndCar = new Stage(Point.MapFrom(Vector3.Zero), Point.MapFrom(Vector3.Zero));
 
             Dictionary<string, Part> houseParts = new Dictionary<string, Part>();
-            houseParts.Add("frontal", frontal);
-            houseParts.Add("posterior", posterior);
-            houseParts.Add("lateralDerecho", lateralDerecho);
-            houseParts.Add("lateralIzquierdo", lateralIzquierdo);
-            houseParts.Add("superior", superior);
-            houseParts.Add("inferior", inferior);
+            // houseParts.Add("frontal", frontal);
+            // houseParts.Add("posterior", posterior);
+            // houseParts.Add("lateralDerecho", lateralDerecho);
+            // houseParts.Add("lateralIzquierdo", lateralIzquierdo);
+            // houseParts.Add("superior", superior);
+            // houseParts.Add("inferior", inferior);
             houseParts.Add("caraFrontalTecho", caraFrontalTecho);
             houseParts.Add("caraPosteriorTecho", caraPosteriorTecho);
             houseParts.Add("caraLateralDerechaTecho", caraLateralDerechaTecho);

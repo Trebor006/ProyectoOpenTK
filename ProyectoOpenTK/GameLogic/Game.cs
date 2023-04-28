@@ -42,10 +42,12 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnRenderFrame(FrameEventArgs e)
         {
+            base.OnRenderFrame(e);
+
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            GL.Enable(EnableCap.DepthTest);
-            GL.LoadIdentity();
-            GL.Rotate(20, 1, 1, 0);
+            // GL.Enable(EnableCap.DepthTest);
+            // GL.LoadIdentity();
+            // GL.Rotate(20, 1, 1, 0);
 
             //-----------------------
 
@@ -56,7 +58,6 @@ namespace ProyectoOpenTK.GameLogic
 
             //-----------------------
             Context.SwapBuffers();
-            base.OnRenderFrame(e);
         }
 
         //-----------------------------------------------------------------------------------------------------------------
@@ -103,6 +104,22 @@ namespace ProyectoOpenTK.GameLogic
             else if (e.KeyChar == 'd')
             {
                 moveToRight();
+            }
+            else if (e.KeyChar == '8')
+            {
+                rotateRightX();
+            }
+            else if (e.KeyChar == '2')
+            {
+                rotateLeftX();
+            }
+            else if (e.KeyChar == '4')
+            {
+                rotateUpY();
+            }
+            else if (e.KeyChar == '6')
+            {
+                rotateDownY();
             }
 
             base.OnKeyPress(e);
@@ -153,6 +170,38 @@ namespace ProyectoOpenTK.GameLogic
             foreach (var stages in stages)
             {
                 stages.Value.moveToRight();
+            }
+        }
+
+        private void rotateUpY()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.rotateUpY();
+            }
+        }
+
+        private void rotateDownY()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.rotateDownY();
+            }
+        }
+
+        private void rotateRightX()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.rotateRightX();
+            }
+        }
+
+        private void rotateLeftX()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.rotateLeftX();
             }
         }
     }

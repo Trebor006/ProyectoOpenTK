@@ -41,49 +41,81 @@ namespace ProyectoOpenTK.GameLogic
 
         public void increaseSize()
         {
-            foreach (var objects in parts)
+            foreach (var part in parts)
             {
-                // objects.Value.Scale();
+                part.Value.Scale(1.1f, 1.1f, 1.1f);
             }
         }
 
         public void decreaseSize()
         {
-            foreach (var objects in parts)
+            foreach (var part in parts)
             {
-                // objects.Value.Scale();
+                part.Value.Scale(0.9f, 0.9f, 0.9f);
             }
         }
 
         public void moveToUp()
         {
-            foreach (var objects in parts)
+            foreach (var part in parts)
             {
-                
+                part.Value.Translate(0, 1, 0);
             }
         }
 
         public void moveToDown()
         {
-            foreach (var objects in parts)
+            foreach (var part in parts)
             {
-                
+                part.Value.Translate(0, -1, 0);
             }
         }
 
         public void moveToLeft()
         {
-            foreach (var objects in parts)
+            foreach (var part in parts)
             {
-                
+                part.Value.Translate(-1, 0, 0);
             }
         }
 
         public void moveToRight()
         {
-            foreach (var objects in parts)
+            foreach (var part in parts)
             {
-                
+                part.Value.Translate(1, 0, 0);
+            }
+        }
+
+        public void rotateUpY()
+        {
+            foreach (var part in parts)
+            {
+                part.Value.Rotate(10, 0, 1, 0);
+            }
+        }
+
+        public void rotateDownY()
+        {
+            foreach (var part in parts)
+            {
+                part.Value.Rotate(10, 0, -1, 0);
+            }
+        }
+
+        public void rotateRightX()
+        {
+            foreach (var part in parts)
+            {
+                part.Value.Rotate(10, 1, 0, 0);
+            }
+        }
+
+        public void rotateLeftX()
+        {
+            foreach (var part in parts)
+            {
+                part.Value.Rotate(10, -1, 0, 0);
             }
         }
     }
