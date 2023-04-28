@@ -12,8 +12,8 @@ namespace ProyectoOpenTK
         public static void Main(string[] args)
         {
             Game juego = new Game(800, 600, "Demo OpenTK");
-            // juego.stages = LoadFromJson();
-            juego.stages = LoadStage();
+            juego.stages = LoadFromJson();
+            // juego.stages = LoadStage();
             // FileHelper.mapToJson(juego.stages);
             juego.Run(60);
         }

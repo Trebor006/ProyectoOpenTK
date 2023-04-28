@@ -13,9 +13,9 @@ namespace ProyectoOpenTK.GameLogic
         [JsonIgnore] private int EBO;
 
         [JsonIgnore] private int vertexCount;
-        [JsonIgnore] private int indices;
 
         public float[] vertices { get; set; }
+        public int[] indices;
 
         public Point origin { get; set; }
         public Point position { get; set; }
@@ -25,6 +25,7 @@ namespace ProyectoOpenTK.GameLogic
             this.vertices = vertices;
             this.origin = origin;
             this.position = origin;
+            this.indices = indices;
 
             // Crear y configurar el Vertex Array Object (VAO)
             VAO = GL.GenVertexArray();
@@ -39,7 +40,7 @@ namespace ProyectoOpenTK.GameLogic
             // Crear y configurar el Element Buffer Object (EBO)
             EBO = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBO);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(int), indices,
+            GL.BufferData(BufferTarget.ElementArrayBuffer, this.indices.Length * sizeof(int), this.indices,
                 BufferUsageHint.StaticDraw);
 
             // Especificar el diseño de los atributos de vértice
