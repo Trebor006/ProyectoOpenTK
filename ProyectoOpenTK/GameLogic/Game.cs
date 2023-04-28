@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using OpenTK.Input;
+using KeyPressEventArgs = OpenTK.KeyPressEventArgs;
 
 namespace ProyectoOpenTK.GameLogic
 {
     public class Game : GameWindow
     {
-        private Dictionary<string, Stage> stages;
+        public Dictionary<string, Stage> stages { get; set; }
 
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
@@ -39,9 +42,6 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            //GL.DepthMask(true);
-            // GL.Rotate(20, 1, 1, 0);
-
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Enable(EnableCap.DepthTest);
             GL.LoadIdentity();
@@ -51,7 +51,6 @@ namespace ProyectoOpenTK.GameLogic
             {
                 stages.Value.Draw();
             }
-
 
             //-----------------------
             Context.SwapBuffers();
@@ -75,6 +74,32 @@ namespace ProyectoOpenTK.GameLogic
         public void AddStage(string name, Stage stage)
         {
             this.stages.Add(name, stage);
+        }
+
+        protected override void OnKeyPress(KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '+')
+            {
+                Console.Write("Presionaste +");
+            }
+            else if (e.KeyChar == '-')
+            {
+                Console.Write("Presionaste -");
+            }
+            else if (e.KeyChar == (char)Keys.Up)
+            {
+            }
+            else if (e.KeyChar == (char)Keys.Down)
+            {
+            }
+            else if (e.KeyChar == (char)Keys.Left)
+            {
+            }
+            else if (e.KeyChar == (char)Keys.Right)
+            {
+            }
+
+            base.OnKeyPress(e);
         }
     }
 }

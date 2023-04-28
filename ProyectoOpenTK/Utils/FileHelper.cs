@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
@@ -8,15 +9,15 @@ namespace ProyectoOpenTK.Utils
 {
     public class FileHelper
     {
-        public static Stage loadFromJson(string fileName)
+        public static Dictionary<string, Stage> loadFromJson(string fileName)
         {
             try
             {
                 string jsonString = File.ReadAllText(fileName);
-                Stage objeto = JsonConvert.DeserializeObject<Stage>(jsonString);
-                Console.WriteLine(objeto);
-                if (objeto is null) throw new Exception("Error on loading file");
-                return objeto;
+                Dictionary<string, Stage> stages = JsonConvert.DeserializeObject<Dictionary<string, Stage>>(jsonString);
+                Console.WriteLine(stages);
+                if (stages is null) throw new Exception("Error on loading file");
+                return stages;
             }
             catch (Exception e)
             {
@@ -25,31 +26,19 @@ namespace ProyectoOpenTK.Utils
             }
         }
 
-        public static string mapToJson(Stage stage)
+        public static string mapToJson(Dictionary<string, Stage> stages)
         {
             try
             {
-                var jsonSerializerSettings = new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                };
-                string jsonString = JsonConvert.SerializeObject(stage, Formatting.Indented, jsonSerializerSettings);
-
-                // string directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string jsonString = JsonConvert.SerializeObject(stages, Formatting.Indented);
                 string directoryPath = "./Resources/";
                 string finalPath = Path.Combine(directoryPath, "archivito.json");
-                // File.Create(finalPath);
-                // var fileStream = File.Open(finalPath, FileMode.Create);
-                // // File.WriteAllText(Path.Combine(directoryPath, "archivito.json"), jsonString);
-                // fileStream.
 
-                
                 using (StreamWriter sw = new StreamWriter(finalPath, false))
                 {
                     sw.Write(jsonString);
                 }
 
-                
                 return jsonString;
             }
             catch (Exception e)

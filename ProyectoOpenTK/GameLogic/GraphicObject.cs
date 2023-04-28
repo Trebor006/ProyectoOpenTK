@@ -34,6 +34,7 @@ namespace ProyectoOpenTK.GameLogic
 
         public void AddPart(string name, Part part)
         {
+            // part.position = origin;
             this.parts.Add(name, part);
         }
     }

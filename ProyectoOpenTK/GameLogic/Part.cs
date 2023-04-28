@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
@@ -7,13 +8,10 @@ namespace ProyectoOpenTK.GameLogic
 {
     public class Part : Drawable
     {
-        [JsonIgnore]
-        private int VAO;
-        [JsonIgnore]
-        private int VBO;
+        [JsonIgnore] private int VAO;
+        [JsonIgnore] private int VBO;
 
-        [JsonIgnore]
-        private int vertexCount;
+        [JsonIgnore] private int vertexCount;
 
         public float[] vertices { get; set; }
 
@@ -37,7 +35,7 @@ namespace ProyectoOpenTK.GameLogic
             // Configurar el VAO y VBO
             GL.BindVertexArray(VAO);
             GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices,
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), getVerticesToDraw(),
                 BufferUsageHint.StaticDraw);
 
             // Especificar el diseño de los datos de vértices
@@ -54,6 +52,19 @@ namespace ProyectoOpenTK.GameLogic
             GL.BindVertexArray(VAO);
             GL.DrawArrays(PrimitiveType.LineLoop, 0, vertexCount);
             GL.BindVertexArray(0);
+        }
+
+        private float[] getVerticesToDraw()
+        {
+            float[] verticesCalculated = new float[vertices.Length];
+            for (var i = 0; i < vertices.Length; i += 3)
+            {
+                verticesCalculated[i] = vertices[i] + origin.x;
+                verticesCalculated[i + 1] = vertices[i + 1] + origin.y;
+                verticesCalculated[i + 2] = vertices[i + 2] + origin.z;
+            }
+
+            return verticesCalculated;
         }
     }
 }

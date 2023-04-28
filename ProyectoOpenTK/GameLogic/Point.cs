@@ -5,20 +5,20 @@ namespace ProyectoOpenTK.GameLogic
 {
     public class Point
     {
-        public float X;
-        public float Y;
-        public float Z;
+        public float x;
+        public float y;
+        public float z;
 
         public Point(float x, float y, float z)
         {
-            X = x;
-            Y = y;
-            Z = z;
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
         public Vector3 ParseToVector3()
         {
-            return new Vector3(X, Y, Z);
+            return new Vector3(x, y, z);
         }
 
         public static Point MapFrom(Vector3 vector3)
