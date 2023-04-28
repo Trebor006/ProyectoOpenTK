@@ -6,5 +6,7 @@
         void moveToDown();
         void moveToLeft();
         void moveToRight();
+        void moveToFront();
+        void moveToBottom();
     }
 }

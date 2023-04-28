@@ -3,7 +3,7 @@ using OpenTK;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class GraphicObject : Drawable, Trasladable
+    public class GraphicObject : Drawable, Trasladable, Scalable, Rotable
     {
         public Dictionary<string, Part> parts;
 
@@ -43,7 +43,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Scale(1.1f, 1.1f, 1.1f);
+                part.Value.Scale(1.01f, 1.01f, 1.01f);
             }
         }
 
@@ -51,7 +51,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Scale(0.9f, 0.9f, 0.9f);
+                part.Value.Scale(0.99f, 0.99f, 0.99f);
             }
         }
 
@@ -59,7 +59,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Translate(0, 1, 0);
+                part.Value.Translate(0, 0.1f, 0);
             }
         }
 
@@ -67,7 +67,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Translate(0, -1, 0);
+                part.Value.Translate(0, -0.1f, 0);
             }
         }
 
@@ -75,7 +75,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Translate(-1, 0, 0);
+                part.Value.Translate(-0.1f, 0, 0);
             }
         }
 
@@ -83,7 +83,22 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Translate(1, 0, 0);
+                part.Value.Translate(0.1f, 0, 0);
+            }
+        }
+
+        public void moveToFront()
+        {
+            foreach (var part in parts)
+            {
+                part.Value.Translate(0, 0, 0.1f);
+            }
+        }
+        public void moveToBottom()
+        {
+            foreach (var part in parts)
+            {
+                part.Value.Translate(0, 0, -0.1f);
             }
         }
 
@@ -91,7 +106,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Rotate(10, 0, 1, 0);
+                part.Value.Rotate(1, 0, 1, 0);
             }
         }
 
@@ -99,7 +114,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Rotate(10, 0, -1, 0);
+                part.Value.Rotate(1, 0, -1, 0);
             }
         }
 
@@ -107,7 +122,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Rotate(10, 1, 0, 0);
+                part.Value.Rotate(1, 1, 0, 0);
             }
         }
 
@@ -115,7 +130,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
-                part.Value.Rotate(10, -1, 0, 0);
+                part.Value.Rotate(1, -1, 0, 0);
             }
         }
     }

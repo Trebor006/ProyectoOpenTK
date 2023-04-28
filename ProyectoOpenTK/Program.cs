@@ -27,6 +27,7 @@ namespace ProyectoOpenTK
         {
             var originStage = Vector3.Zero;
             var originParedes = Vector3.Zero;
+            var originTecho = new Vector3(0, 5, 0);
 
             var vertices = new float[]
             {
@@ -48,13 +49,13 @@ namespace ProyectoOpenTK
             int[] indicesLateralDerecho = new[] { 0, 1, 5, 4 };
             int[] indicesLateralIzquierdo = new[] { 2, 3, 7, 6 };
             int[] indicesSuperior = new[] { 0, 3, 7, 4 };
-            int[] indicesInferor = new[] { 1, 2, 6, 5 };
+            int[] indicesInferior = new[] { 1, 2, 6, 5 };
 
             int[] indicesCaraFrontalTecho = new[] { 2, 1, 8 };
             int[] indicesCaraPosteriorTecho = new[] { 6, 5, 9 };
             int[] indicesCaraLateralDerechaTecho = new[] { 1, 5, 10, 8 };
             int[] indicesCaraLateralIzquierdaTecho = new[] { 2, 6, 9, 8 };
-            int[] indicesCaraInferiorTecho = new[] { 6, 5, 2 };
+            int[] indicesCaraInferiorTecho = new[] { 6, 5, 1 , 2 };
 
             var frontal = new Part(vertices, indicesFrontal, Point.MapFrom(originParedes));
             var posterior = new Part(vertices, indicesPosterior, Point.MapFrom(originParedes));
@@ -62,9 +63,7 @@ namespace ProyectoOpenTK
             var lateralIzquierdo = new Part(vertices, indicesLateralIzquierdo, Point.MapFrom(originParedes));
 
             var superior = new Part(vertices, indicesSuperior, Point.MapFrom(originParedes));
-            var inferior = new Part(vertices, indicesInferor, Point.MapFrom(originParedes));
-
-            var originTecho = new Vector3(0, 10, 0);
+            var inferior = new Part(vertices, indicesInferior, Point.MapFrom(originParedes));
 
             var caraFrontalTecho = new Part(vertices, indicesCaraFrontalTecho, Point.MapFrom(originTecho));
             var caraPosteriorTecho = new Part(vertices, indicesCaraPosteriorTecho, Point.MapFrom(originTecho));
@@ -75,12 +74,12 @@ namespace ProyectoOpenTK
             var houseAndCar = new Stage(Point.MapFrom(Vector3.Zero), Point.MapFrom(Vector3.Zero));
 
             Dictionary<string, Part> houseParts = new Dictionary<string, Part>();
-            // houseParts.Add("frontal", frontal);
-            // houseParts.Add("posterior", posterior);
-            // houseParts.Add("lateralDerecho", lateralDerecho);
-            // houseParts.Add("lateralIzquierdo", lateralIzquierdo);
-            // houseParts.Add("superior", superior);
-            // houseParts.Add("inferior", inferior);
+            houseParts.Add("frontal", frontal);
+            houseParts.Add("posterior", posterior);
+            houseParts.Add("lateralDerecho", lateralDerecho);
+            houseParts.Add("lateralIzquierdo", lateralIzquierdo);
+            houseParts.Add("superior", superior);
+            houseParts.Add("inferior", inferior);
             houseParts.Add("caraFrontalTecho", caraFrontalTecho);
             houseParts.Add("caraPosteriorTecho", caraPosteriorTecho);
             houseParts.Add("caraLateralDerechaTecho", caraLateralDerechaTecho);

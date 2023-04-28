@@ -5,7 +5,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Stage : Drawable, Trasladable
+    public class Stage : Drawable, Trasladable, Scalable, Rotable
     {
         public Dictionary<string, GraphicObject> objects;
 
@@ -95,7 +95,24 @@ namespace ProyectoOpenTK.GameLogic
                 objects.Value.moveToRight();
             }
         }
-        
+
+        public void moveToFront()
+        {
+            foreach (var objects in objects)
+            {
+                objects.Value.moveToFront();
+            }
+        }
+
+        public void moveToBottom()
+        {
+            foreach (var objects in objects)
+            {
+                objects.Value.moveToBottom();
+            }
+        }
+
+
         public void rotateUpY()
         {
             foreach (var objects in objects)

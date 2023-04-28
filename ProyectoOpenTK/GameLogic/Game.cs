@@ -47,7 +47,7 @@ namespace ProyectoOpenTK.GameLogic
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             // GL.Enable(EnableCap.DepthTest);
             // GL.LoadIdentity();
-            // GL.Rotate(20, 1, 1, 0);
+
 
             //-----------------------
 
@@ -105,6 +105,19 @@ namespace ProyectoOpenTK.GameLogic
             {
                 moveToRight();
             }
+            else if (e.KeyChar == 'q')
+            {
+                moveToFront();
+            }
+            else if (e.KeyChar == 'e')
+            {
+                moveToBottom();
+            }
+            else if (e.KeyChar == 'r')
+            {
+                reset();
+            }
+            
             else if (e.KeyChar == '8')
             {
                 rotateRightX();
@@ -123,6 +136,13 @@ namespace ProyectoOpenTK.GameLogic
             }
 
             base.OnKeyPress(e);
+        }
+
+        private void reset()
+        {
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            GL.Enable(EnableCap.DepthTest);
+            GL.LoadIdentity();
         }
 
         private void increaseSize()
@@ -170,6 +190,21 @@ namespace ProyectoOpenTK.GameLogic
             foreach (var stages in stages)
             {
                 stages.Value.moveToRight();
+            }
+        }
+
+        private void moveToFront()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.moveToFront();
+            }
+        }
+        private void moveToBottom()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.moveToBottom();
             }
         }
 

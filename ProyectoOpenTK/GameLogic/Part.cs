@@ -33,7 +33,7 @@ namespace ProyectoOpenTK.GameLogic
             // Crear y configurar el Vertex Buffer Object (VBO)
             VBO = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices,
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), getVerticesToDraw(),
                 BufferUsageHint.StaticDraw);
 
             // Crear y configurar el Element Buffer Object (EBO)
