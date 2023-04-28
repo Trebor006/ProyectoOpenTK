@@ -41,7 +41,7 @@ namespace ProyectoOpenTK
             var inferior = new Part(new float[] { 5f, -5f, 5f, -5f, -5f, 5f, -5f, -5f, -5f, 5f, -5f, -5f },
                 Point.MapFrom(originParedes));
 
-            var originTecho = new Vector3(0, 10, 0);
+            var originTecho = new Vector3(0, 0, 0);
 
             var caraFrontalTecho = new Part(new float[] { -5, -5, 5, 5, -5, 5, 0, 5, 5, }, Point.MapFrom(originTecho));
             var caraPosteriorTecho =

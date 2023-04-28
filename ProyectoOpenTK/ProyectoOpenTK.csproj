@@ -47,7 +47,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="GameLogic\GraphicObject.cs" />
-        <Compile Include="GameLogic\Drawable.cs" />
+        <Compile Include="GameLogic\Interfaces\Drawable.cs" />
+        <Compile Include="GameLogic\Interfaces\Trasladable.cs" />
         <Compile Include="GameLogic\Point.cs" />
         <Compile Include="GameLogic\Stage.cs" />
         <Compile Include="GameLogic\Game.cs" />

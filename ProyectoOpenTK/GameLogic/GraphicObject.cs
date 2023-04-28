@@ -3,7 +3,7 @@ using OpenTK;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class GraphicObject : Drawable
+    public class GraphicObject : Drawable, Trasladable
     {
         public Dictionary<string, Part> parts;
 
@@ -28,6 +28,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             foreach (var part in parts)
             {
+                part.Value.position = position;
                 part.Value.Draw();
             }
         }
@@ -36,6 +37,54 @@ namespace ProyectoOpenTK.GameLogic
         {
             // part.position = origin;
             this.parts.Add(name, part);
+        }
+
+        public void increaseSize()
+        {
+            foreach (var objects in parts)
+            {
+                // objects.Value.Scale();
+            }
+        }
+
+        public void decreaseSize()
+        {
+            foreach (var objects in parts)
+            {
+                // objects.Value.Scale();
+            }
+        }
+
+        public void moveToUp()
+        {
+            foreach (var objects in parts)
+            {
+                
+            }
+        }
+
+        public void moveToDown()
+        {
+            foreach (var objects in parts)
+            {
+                
+            }
+        }
+
+        public void moveToLeft()
+        {
+            foreach (var objects in parts)
+            {
+                
+            }
+        }
+
+        public void moveToRight()
+        {
+            foreach (var objects in parts)
+            {
+                
+            }
         }
     }
 }

@@ -45,6 +45,8 @@ namespace ProyectoOpenTK.GameLogic
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Enable(EnableCap.DepthTest);
             GL.LoadIdentity();
+            GL.Rotate(20, 1, 1, 0);
+
             //-----------------------
 
             foreach (var stages in stages)
@@ -80,26 +82,78 @@ namespace ProyectoOpenTK.GameLogic
         {
             if (e.KeyChar == '+')
             {
-                Console.Write("Presionaste +");
+                increaseSize();
             }
             else if (e.KeyChar == '-')
             {
-                Console.Write("Presionaste -");
+                decreaseSize();
             }
-            else if (e.KeyChar == (char)Keys.Up)
+            else if (e.KeyChar == 'w')
             {
+                moveToUp();
             }
-            else if (e.KeyChar == (char)Keys.Down)
+            else if (e.KeyChar == 's')
             {
+                moveToDown();
             }
-            else if (e.KeyChar == (char)Keys.Left)
+            else if (e.KeyChar == 'a')
             {
+                moveToLeft();
             }
-            else if (e.KeyChar == (char)Keys.Right)
+            else if (e.KeyChar == 'd')
             {
+                moveToRight();
             }
 
             base.OnKeyPress(e);
+        }
+
+        private void increaseSize()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.increaseSize();
+            }
+        }
+
+        private void decreaseSize()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.decreaseSize();
+            }
+        }
+
+        private void moveToUp()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.moveToUp();
+            }
+        }
+
+        private void moveToDown()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.moveToDown();
+            }
+        }
+
+        private void moveToLeft()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.moveToLeft();
+            }
+        }
+
+        private void moveToRight()
+        {
+            foreach (var stages in stages)
+            {
+                stages.Value.moveToRight();
+            }
         }
     }
 }

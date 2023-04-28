@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Stage : Drawable
+    public class Stage : Drawable, Trasladable
     {
         public Dictionary<string, GraphicObject> objects;
 
@@ -34,11 +35,64 @@ namespace ProyectoOpenTK.GameLogic
 
         public void Draw()
         {
-            GL.Rotate(20, 1, 1, 0);
-
-            foreach (var actores in objects)
+            foreach (var objects in objects)
             {
-                actores.Value.Draw();
+                objects.Value.position = position;
+                objects.Value.Draw();
+            }
+        }
+
+        public void increaseSize()
+        {
+            Console.WriteLine("actualizando increaseSize");
+            foreach (var objects in objects)
+            {
+                objects.Value.increaseSize();
+            }
+        }
+
+        public void decreaseSize()
+        {
+            Console.WriteLine("actualizando decreaseSize");
+            foreach (var objects in objects)
+            {
+                objects.Value.decreaseSize();
+            }
+        }
+
+        public void moveToUp()
+        {
+            Console.WriteLine("actualizando posicion moveToUp");
+            foreach (var objects in objects)
+            {
+                objects.Value.moveToUp();
+            }
+        }
+
+        public void moveToDown()
+        {
+            Console.WriteLine("actualizando posicion moveToDown ");
+            foreach (var objects in objects)
+            {
+                objects.Value.moveToDown();
+            }
+        }
+
+        public void moveToLeft()
+        {
+            Console.WriteLine("actualizando posicion moveToLeft");
+            foreach (var objects in objects)
+            {
+                objects.Value.moveToLeft();
+            }
+        }
+
+        public void moveToRight()
+        {
+            Console.WriteLine("actualizando posicion moveToRight");
+            foreach (var objects in objects)
+            {
+                objects.Value.moveToRight();
             }
         }
     }

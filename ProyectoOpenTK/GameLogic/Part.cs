@@ -22,6 +22,7 @@ namespace ProyectoOpenTK.GameLogic
         {
             this.vertices = vertices;
             this.origin = origin;
+            this.position = origin;
         }
 
         public void Draw()
@@ -59,9 +60,9 @@ namespace ProyectoOpenTK.GameLogic
             float[] verticesCalculated = new float[vertices.Length];
             for (var i = 0; i < vertices.Length; i += 3)
             {
-                verticesCalculated[i] = vertices[i] + origin.x;
-                verticesCalculated[i + 1] = vertices[i + 1] + origin.y;
-                verticesCalculated[i + 2] = vertices[i + 2] + origin.z;
+                verticesCalculated[i] = vertices[i] + origin.x + position.x;
+                verticesCalculated[i + 1] = vertices[i + 1] + origin.y + position.y;
+                verticesCalculated[i + 2] = vertices[i + 2] + origin.z + position.z;
             }
 
             return verticesCalculated;
