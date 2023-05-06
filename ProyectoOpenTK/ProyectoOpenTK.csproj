@@ -47,9 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomCheckedListBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="GameLogic\GraphicObject.cs" />
     <Compile Include="GameLogic\Interfaces\Drawable.cs" />
     <Compile Include="GameLogic\Interfaces\Rotable.cs" />
