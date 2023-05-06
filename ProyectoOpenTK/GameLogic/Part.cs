@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using Newtonsoft.Json;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using ProyectoOpenTK.Utils;
 
 
 namespace ProyectoOpenTK.GameLogic
@@ -14,11 +16,13 @@ namespace ProyectoOpenTK.GameLogic
 
         [JsonIgnore] private int vertexCount;
 
+        public bool selected { get; set; }
         public float[] vertices { get; set; }
         public int[] indices;
 
         public Point origin { get; set; }
         public Point position { get; set; }
+        public Matrix4 modelMatrix { get; private set; }
 
         public Part(float[] vertices, int[] indices, Point origin)
         {
@@ -26,6 +30,7 @@ namespace ProyectoOpenTK.GameLogic
             this.origin = origin;
             this.position = origin;
             this.indices = indices;
+            modelMatrix = Matrix4.Identity;
 
             // Crear y configurar el Vertex Array Object (VAO)
             VAO = GL.GenVertexArray();
@@ -56,9 +61,15 @@ namespace ProyectoOpenTK.GameLogic
 
         public void Draw()
         {
+            GL.PushMatrix();
+            var matrix4 = modelMatrix;
+            GL.MultMatrix(ref matrix4);
+
             GL.BindVertexArray(VAO);
             GL.DrawElements(PrimitiveType.LineLoop, vertexCount, DrawElementsType.UnsignedInt, 0);
             GL.BindVertexArray(0);
+
+            GL.PopMatrix();
         }
 
         private float[] getVerticesToDraw()
@@ -76,17 +87,40 @@ namespace ProyectoOpenTK.GameLogic
 
         public void Translate(float x, float y, float z)
         {
-            GL.Translate(x, y, z);
+            if (selected)
+            {
+                modelMatrix *= Matrix4.CreateTranslation(new Vector3(x, y, z));
+            }
         }
 
         public void Scale(float x, float y, float z)
         {
-            GL.Scale(x, y, z);
+            if (selected)
+            {
+                Matrix4 scaleMatrix = Matrix4.CreateScale(x, y, z);
+                modelMatrix *= scaleMatrix;
+            }
         }
 
         public void Rotate(float angle, float x, float y, float z)
         {
-            GL.Rotate(angle, x, y, z);
+            if (selected)
+            {
+                if (x > 0 || x < 0)
+                {
+                    modelMatrix *= Matrix4.CreateRotationX(MathHelper.DegreesToRadians(angle));
+                }
+
+                if (y > 0 || y < 0)
+                {
+                    modelMatrix *= Matrix4.CreateRotationY(MathHelper.DegreesToRadians(angle));
+                }
+
+                if (z > 0 || z < 0)
+                {
+                    modelMatrix *= Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(angle));
+                }
+            }
         }
     }
 }

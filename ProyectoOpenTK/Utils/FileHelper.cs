@@ -26,6 +26,20 @@ namespace ProyectoOpenTK.Utils
             }
         }
 
+        public static Dictionary<string, Stage> loadFromJsonString(string jsonString)
+        {
+            try
+            {                
+                Dictionary<string, Stage> stages = JsonConvert.DeserializeObject<Dictionary<string, Stage>>(jsonString);                                
+                return stages;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         public static string mapToJson(Dictionary<string, Stage> stages)
         {
             try

@@ -4,24 +4,31 @@ using ProyectoOpenTK.GameLogic;
 using Newtonsoft.Json;
 using OpenTK;
 using ProyectoOpenTK.Utils;
+using System;
+using System.Windows.Forms;
+
 
 namespace ProyectoOpenTK
 {
     internal class Program
     {
-        public static void Main(string[] args)
+        
+        [STAThread] // Atributo STAThread
+        // public static void Main(string[] args)
+        static void Main()
         {
-            Game juego = new Game(800, 600, "Demo OpenTK");
-            juego.stages = LoadFromJson();
-            // juego.stages = LoadStage();
-            // FileHelper.mapToJson(juego.stages);
-            juego.Run(60);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+
+            //Game juego = new Game(800, 600, "Demo OpenTK");
+            //juego.stages = LoadFromJson();
+           // juego.stages = LoadStage();
+            //FileHelper.mapToJson(juego.stages);
+            //juego.Run(60);
         }
 
-        private static Dictionary<string, Stage> LoadFromJson()
-        {
-            return FileHelper.loadFromJson("./Resources/archivito.json");
-        }
+        
 
         public static Dictionary<string, Stage> LoadStage()
         {
@@ -36,59 +43,29 @@ namespace ProyectoOpenTK
                 5f, -5f, 5f, //1
                 -5f, -5f, 5f, //2
                 -5f, 5f, 5f, //3
+
                 5f, 5f, -5f, //4
                 5f, -5f, -5f, //5
                 -5f, -5f, -5f, //6
                 -5f, 5f, -5f, //7
+
                 0f, 5f, 5f, //8
                 0f, 5f, -5f, //9
                 0f, 5f, -5f, //10
             };
 
-            int[] indicesFrontal = new[] { 0, 1, 2, 3 };
-            int[] indicesPosterior = new[] { 4, 5, 6, 7 };
-            int[] indicesLateralDerecho = new[] { 0, 1, 5, 4 };
-            int[] indicesLateralIzquierdo = new[] { 2, 3, 7, 6 };
-            int[] indicesSuperior = new[] { 0, 3, 7, 4 };
-            int[] indicesInferior = new[] { 1, 2, 6, 5 };
+            int[] indicesParedes = new[] { 0, 1, 2, 3 ,0 , 4 , 5 , 6 , 7, 4, 5, 1 ,0, 1, 2, 6, 5, 6,2, 3, 7, 6, 5, 1, 0, 3, 7, 4 };          
+            int[] indicesTecho = new[] { 2, 1, 8, 2, 6, 9, 8, 2, 1 , 5 , 6 , 5,1,2,8,10,5,1 };
 
-            int[] indicesCaraFrontalTecho = new[] { 2, 1, 8 };
-            int[] indicesCaraPosteriorTecho = new[] { 6, 5, 9 };
-            int[] indicesCaraLateralDerechaTecho = new[] { 1, 5, 10, 8 };
-            int[] indicesCaraLateralIzquierdaTecho = new[] { 2, 6, 9, 8 };
-            int[] indicesCaraInferiorTecho = new[] { 6, 5, 1, 2 };
-
-            var frontal = new Part(vertices, indicesFrontal, Point.MapFrom(originParedes));
-            var posterior = new Part(vertices, indicesPosterior, Point.MapFrom(originParedes));
-            var lateralDerecho = new Part(vertices, indicesLateralDerecho, Point.MapFrom(originParedes));
-            var lateralIzquierdo = new Part(vertices, indicesLateralIzquierdo, Point.MapFrom(originParedes));
-
-            var superior = new Part(vertices, indicesSuperior, Point.MapFrom(originParedes));
-            var inferior = new Part(vertices, indicesInferior, Point.MapFrom(originParedes));
-
-            var caraFrontalTecho = new Part(vertices, indicesCaraFrontalTecho, Point.MapFrom(originTecho));
-            var caraPosteriorTecho = new Part(vertices, indicesCaraPosteriorTecho, Point.MapFrom(originTecho));
-            var caraLateralDerechaTecho =
-                new Part(vertices, indicesCaraLateralDerechaTecho, Point.MapFrom(originTecho));
-            var caraLateralIzquierdaTecho =
-                new Part(vertices, indicesCaraLateralIzquierdaTecho, Point.MapFrom(originTecho));
-            var caraInferiorTecho = new Part(vertices, indicesCaraInferiorTecho, Point.MapFrom(originTecho));
+            var paredes = new Part(vertices, indicesParedes, Point.MapFrom(originParedes));
+            var techo = new Part(vertices, indicesTecho, Point.MapFrom(originTecho));
 
             var houseAndCar = new Stage(Point.MapFrom(Vector3.Zero), Point.MapFrom(Vector3.Zero));
 
             Dictionary<string, Part> houseParts = new Dictionary<string, Part>();
 
-            houseParts.Add("frontal", frontal);
-            houseParts.Add("posterior", posterior);
-            houseParts.Add("lateralDerecho", lateralDerecho);
-            houseParts.Add("lateralIzquierdo", lateralIzquierdo);
-            houseParts.Add("superior", superior);
-            houseParts.Add("inferior", inferior);
-            houseParts.Add("caraFrontalTecho", caraFrontalTecho);
-            houseParts.Add("caraPosteriorTecho", caraPosteriorTecho);
-            houseParts.Add("caraLateralDerechaTecho", caraLateralDerechaTecho);
-            houseParts.Add("caraLateralIzquierdaTecho", caraLateralIzquierdaTecho);
-            houseParts.Add("caraInferiorTecho", caraInferiorTecho);
+            houseParts.Add("paredes", paredes);
+            houseParts.Add("techo", techo);
 
             var houseObject = new GraphicObject(Point.MapFrom(originStage), Point.MapFrom(Vector3.Zero), houseParts);
 
@@ -132,41 +109,74 @@ namespace ProyectoOpenTK
                 -1.2f, -1f, -3f, // 34  16
                 -0.6f, -2.5f, -3f, // 35    17
             };
-            int[] indicesCarLateralIzq = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-            int[] indicesCarLateralDer = new[]
-                { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
+           // int[] indicesCarLateralIzq = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+           //int[] indicesCarLateralDer = new[]
+           //     { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
 
             int[] indicesCarCapot = new[] { 12, 11, 29, 30 };
             int[] indicesCarParabrisas = new[] { 11, 10, 28, 29 };
             int[] indicesCarTecho = new[] { 10, 9, 27, 28 };
             int[] indicesCarParabrisasTrasero = new[] { 9, 8, 26, 27 };
             int[] indiceMaletero = new[] { 8, 7, 25, 26 };
-            int[] indicePosterior = new[] { 7, 6, 24, 25 };
-            int[] indiceInferior = new[] { 6, 13, 31, 24 };
+            //int[] indicePosterior = new[] { 7, 6, 24, 25 };
+            //int[] indiceInferior = new[] { 6, 13, 31, 24 };
             int[] indiceFrontal = new[] { 12, 13, 31, 30 };
 
+
+            //int[] indicesCarLateralIzq = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+            //int[] indicesCarLateralDer = new[]
+            //    { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
+            //int[] indicePosterior = new[] { 7, 6, 24, 25 };
+            //int[] indiceInferior = new[] { 6, 13, 31, 24 };
+            //int[] indiceFrontal = new[] { 12, 13, 31, 30 };
+
+            int[] indiceChasis = new[] {
+                0, 1, 2, 3, 4, 5, 6,
+
+                13, 31, 24 , 6, 7, 6, 24, 25 ,7,
+
+                6, 13,31,24,6, 7 ,
+
+                
+
+                
+
+                8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 0,
+                18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 18
+
+          //      7, 6, 24, 25 , 7 ,
+           //     6, 13, 31, 24 , 6,
+
+                //6, 13, 31, 24, 6
+            };
+
+
             Dictionary<string, Part> carParts = new Dictionary<string, Part>();
-            var carLateralIzq = new Part(verticesCar, indicesCarLateralIzq, Point.MapFrom(originCar));
-            var carLateralDer = new Part(verticesCar, indicesCarLateralDer, Point.MapFrom(originCar));
+            //var carLateralIzq = new Part(verticesCar, indicesCarLateralIzq, Point.MapFrom(originCar));
+            //var carLateralDer = new Part(verticesCar, indicesCarLateralDer, Point.MapFrom(originCar));
             var caraCapot = new Part(verticesCar, indicesCarCapot, Point.MapFrom(originCar));
             var caraParabrisas = new Part(verticesCar, indicesCarParabrisas, Point.MapFrom(originCar));
             var caraTecho = new Part(verticesCar, indicesCarTecho, Point.MapFrom(originCar));
             var caraParabrisasTrasero =
                 new Part(verticesCar, indicesCarParabrisasTrasero, Point.MapFrom(originCar));
             var caraMaletero = new Part(verticesCar, indiceMaletero, Point.MapFrom(originCar));
-            var caraPosterior = new Part(verticesCar, indicePosterior, Point.MapFrom(originCar));
-            var caraInferior = new Part(verticesCar, indiceInferior, Point.MapFrom(originCar));
-            var caraFrontal = new Part(verticesCar, indiceFrontal, Point.MapFrom(originCar));
-            carParts.Add("carLateralIzq", carLateralIzq);
-            carParts.Add("carLateralDer", carLateralDer);
-            carParts.Add("indicesCarCapot", caraCapot);
-            carParts.Add("caraParabrisas", caraParabrisas);
-            carParts.Add("caraTecho", caraTecho);
-            carParts.Add("caraParabrisasTrasero", caraParabrisasTrasero);
-            carParts.Add("caraMaletero", caraMaletero);
-            carParts.Add("caraPosterior", caraPosterior);
-            carParts.Add("caraInferior", caraInferior);
-            carParts.Add("caraFrontal", caraFrontal);
+            //var caraPosterior = new Part(verticesCar, indicePosterior, Point.MapFrom(originCar));
+            //var caraInferior = new Part(verticesCar, indiceInferior, Point.MapFrom(originCar));
+            //var caraFrontal = new Part(verticesCar, indiceFrontal, Point.MapFrom(originCar));
+            var chasis = new Part(verticesCar, indiceChasis, Point.MapFrom(originCar));
+            //carParts.Add("carLateralIzq", carLateralIzq);
+            //carParts.Add("carLateralDer", carLateralDer);
+            //carParts.Add("caraPosterior", caraPosterior);
+            //carParts.Add("caraInferior", caraInferior);
+            //carParts.Add("caraFrontal", caraFrontal);
+            
+            carParts.Add("chasis", chasis);
+            carParts.Add("capot", caraCapot);
+            carParts.Add("parabrisas", caraParabrisas);
+            carParts.Add("techo", caraTecho);
+            carParts.Add("parabrisasTrasero", caraParabrisasTrasero);
+            carParts.Add("maletero", caraMaletero);
+            
             var carObject = new GraphicObject(Point.MapFrom(originStage), Point.MapFrom(Vector3.Zero), carParts);
 
 

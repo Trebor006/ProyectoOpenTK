@@ -145,7 +145,7 @@ namespace ProyectoOpenTK.GameLogic
             GL.LoadIdentity();
         }
 
-        private void increaseSize()
+        public void increaseSize()
         {
             foreach (var stages in stages)
             {
@@ -153,7 +153,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void decreaseSize()
+        public void decreaseSize()
         {
             foreach (var stages in stages)
             {
@@ -161,7 +161,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void moveToUp()
+        public void moveToUp()
         {
             foreach (var stages in stages)
             {
@@ -169,7 +169,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void moveToDown()
+        public void moveToDown()
         {
             foreach (var stages in stages)
             {
@@ -177,7 +177,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void moveToLeft()
+        public void moveToLeft()
         {
             foreach (var stages in stages)
             {
@@ -185,7 +185,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void moveToRight()
+        public void moveToRight()
         {
             foreach (var stages in stages)
             {
@@ -193,14 +193,14 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void moveToFront()
+        public void moveToFront()
         {
             foreach (var stages in stages)
             {
                 stages.Value.moveToFront();
             }
         }
-        private void moveToBottom()
+        public void moveToBottom()
         {
             foreach (var stages in stages)
             {
@@ -208,7 +208,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void rotateUpY()
+        public void rotateUpY()
         {
             foreach (var stages in stages)
             {
@@ -216,7 +216,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void rotateDownY()
+        public void rotateDownY()
         {
             foreach (var stages in stages)
             {
@@ -224,7 +224,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void rotateRightX()
+        public void rotateRightX()
         {
             foreach (var stages in stages)
             {
@@ -232,7 +232,7 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        private void rotateLeftX()
+        public void rotateLeftX()
         {
             foreach (var stages in stages)
             {
