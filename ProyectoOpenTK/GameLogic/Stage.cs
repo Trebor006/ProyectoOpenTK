@@ -68,35 +68,11 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        public void rotateUpY()
+        public void rotate(float angle, float x, float y, float z)
         {
             foreach (var objects in objects)
             {
-                objects.Value.rotateUpY();
-            }
-        }
-
-        public void rotateDownY()
-        {
-            foreach (var objects in objects)
-            {
-                objects.Value.rotateDownY();
-            }
-        }
-
-        public void rotateRightX()
-        {
-            foreach (var objects in objects)
-            {
-                objects.Value.rotateRightX();
-            }
-        }
-
-        public void rotateLeftX()
-        {
-            foreach (var objects in objects)
-            {
-                objects.Value.rotateLeftX();
+                objects.Value.rotate(angle, x, y, z);
             }
         }
     }

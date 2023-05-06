@@ -13,9 +13,17 @@ namespace ProyectoOpenTK.GameLogic
     {
         public Dictionary<string, Stage> stages { get; set; }
 
+        public float increaseValue { get; set; }
+        public float movementValue { get; set; }
+        public int degreesValue { get; set; }
+
+
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
             this.stages = new Dictionary<string, Stage>();
+            this.increaseValue = 0.1f;
+            this.movementValue = 0.1f;
+            this.degreesValue = 1;
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -91,27 +99,27 @@ namespace ProyectoOpenTK.GameLogic
             }
             else if (e.KeyChar == 'w')
             {
-                moveTo(0, 0.1f, 0);
+                moveTo(0, movementValue, 0);
             }
             else if (e.KeyChar == 's')
             {
-                moveTo(0, -0.1f, 0);
+                moveTo(0, movementValue * -1f, 0);
             }
             else if (e.KeyChar == 'a')
             {
-                moveTo(-0.1f, 0, 0);
+                moveTo(movementValue * -1f, 0, 0);
             }
             else if (e.KeyChar == 'd')
             {
-                moveTo(0.1f, 0, 0);
+                moveTo(movementValue, 0, 0);
             }
             else if (e.KeyChar == 'q')
             {
-                moveTo(0, 0, 0.1f);
+                moveTo(0, 0, movementValue);
             }
             else if (e.KeyChar == 'e')
             {
-                moveTo(0, 0, -0.1f);
+                moveTo(0, 0, movementValue * -1f);
             }
             else if (e.KeyChar == 'r')
             {
@@ -120,19 +128,29 @@ namespace ProyectoOpenTK.GameLogic
 
             else if (e.KeyChar == '8')
             {
-                rotateRightX();
+                rotate(degreesValue, 1, 0, 0);
             }
             else if (e.KeyChar == '2')
             {
-                rotateLeftX();
+                rotate(degreesValue, -1, 0, 0);
             }
             else if (e.KeyChar == '4')
             {
-                rotateUpY();
+                rotate(degreesValue, 0, 1, 0);
             }
             else if (e.KeyChar == '6')
             {
-                rotateDownY();
+                rotate(degreesValue, 0, -1, 0);
+            }
+            else if (e.KeyChar == '1')
+            {
+                Console.WriteLine("Rotate Z");
+                rotate(degreesValue, 0, 0, 1);
+            }
+            else if (e.KeyChar == '9')
+            {
+                Console.WriteLine("Rotate -Z");
+                rotate(degreesValue, 0, 0, -1);
             }
 
             base.OnKeyPress(e);
@@ -169,35 +187,11 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        public void rotateUpY()
+        public void rotate(float angle, float x, float y, float z)
         {
             foreach (var stages in stages)
             {
-                stages.Value.rotateUpY();
-            }
-        }
-
-        public void rotateDownY()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.rotateDownY();
-            }
-        }
-
-        public void rotateRightX()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.rotateRightX();
-            }
-        }
-
-        public void rotateLeftX()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.rotateLeftX();
+                stages.Value.rotate(angle, x, y, z);
             }
         }
     }

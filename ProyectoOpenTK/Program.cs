@@ -12,7 +12,6 @@ namespace ProyectoOpenTK
 {
     internal class Program
     {
-        
         [STAThread] // Atributo STAThread
         // public static void Main(string[] args)
         static void Main()
@@ -23,12 +22,11 @@ namespace ProyectoOpenTK
 
             //Game juego = new Game(800, 600, "Demo OpenTK");
             //juego.stages = LoadFromJson();
-           // juego.stages = LoadStage();
+            // juego.stages = LoadStage();
             //FileHelper.mapToJson(juego.stages);
             //juego.Run(60);
         }
 
-        
 
         public static Dictionary<string, Stage> LoadStage()
         {
@@ -54,8 +52,9 @@ namespace ProyectoOpenTK
                 0f, 5f, -5f, //10
             };
 
-            int[] indicesParedes = new[] { 0, 1, 2, 3 ,0 , 4 , 5 , 6 , 7, 4, 5, 1 ,0, 1, 2, 6, 5, 6,2, 3, 7, 6, 5, 1, 0, 3, 7, 4 };          
-            int[] indicesTecho = new[] { 2, 1, 8, 2, 6, 9, 8, 2, 1 , 5 , 6 , 5,1,2,8,10,5,1 };
+            int[] indicesParedes = new[]
+                { 0, 1, 2, 3, 0, 4, 5, 6, 7, 4, 5, 1, 0, 1, 2, 6, 5, 6, 2, 3, 7, 6, 5, 1, 0, 3, 7, 4 };
+            int[] indicesTecho = new[] { 2, 1, 8, 2, 6, 9, 8, 2, 1, 5, 6, 5, 1, 2, 8, 10, 5, 1 };
 
             var paredes = new Part(vertices, indicesParedes, Point.MapFrom(originParedes));
             var techo = new Part(vertices, indicesTecho, Point.MapFrom(originTecho));
@@ -109,9 +108,9 @@ namespace ProyectoOpenTK
                 -1.2f, -1f, -3f, // 34  16
                 -0.6f, -2.5f, -3f, // 35    17
             };
-           // int[] indicesCarLateralIzq = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-           //int[] indicesCarLateralDer = new[]
-           //     { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
+            // int[] indicesCarLateralIzq = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+            //int[] indicesCarLateralDer = new[]
+            //     { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
 
             int[] indicesCarCapot = new[] { 12, 11, 29, 30 };
             int[] indicesCarParabrisas = new[] { 11, 10, 28, 29 };
@@ -130,22 +129,20 @@ namespace ProyectoOpenTK
             //int[] indiceInferior = new[] { 6, 13, 31, 24 };
             //int[] indiceFrontal = new[] { 12, 13, 31, 30 };
 
-            int[] indiceChasis = new[] {
+            int[] indiceChasis = new[]
+            {
                 0, 1, 2, 3, 4, 5, 6,
 
-                13, 31, 24 , 6, 7, 6, 24, 25 ,7,
+                13, 31, 24, 6, 7, 6, 24, 25, 7,
 
-                6, 13,31,24,6, 7 ,
+                6, 13, 31, 24, 6, 7,
 
-                
-
-                
 
                 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 0,
                 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 18
 
-          //      7, 6, 24, 25 , 7 ,
-           //     6, 13, 31, 24 , 6,
+                //      7, 6, 24, 25 , 7 ,
+                //     6, 13, 31, 24 , 6,
 
                 //6, 13, 31, 24, 6
             };
@@ -169,20 +166,18 @@ namespace ProyectoOpenTK
             //carParts.Add("caraPosterior", caraPosterior);
             //carParts.Add("caraInferior", caraInferior);
             //carParts.Add("caraFrontal", caraFrontal);
-            
+
             carParts.Add("chasis", chasis);
             carParts.Add("capot", caraCapot);
             carParts.Add("parabrisas", caraParabrisas);
             carParts.Add("techo", caraTecho);
             carParts.Add("parabrisasTrasero", caraParabrisasTrasero);
             carParts.Add("maletero", caraMaletero);
-            
-            var carObject = new GraphicObject(Point.MapFrom(originStage), Point.MapFrom(Vector3.Zero), carParts);
 
+            var carObject = new GraphicObject(Point.MapFrom(originStage), Point.MapFrom(Vector3.Zero), carParts);
 
             houseAndCar.AddObject("house", houseObject);
             houseAndCar.AddObject("car", carObject);
-
 
             // stage.AddObject("car", graphicObject);
 

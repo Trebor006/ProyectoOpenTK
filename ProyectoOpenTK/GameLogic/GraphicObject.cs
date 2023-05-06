@@ -64,35 +64,11 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        public void rotateUpY()
+        public void rotate(float angle, float x, float y, float z)
         {
             foreach (var part in parts)
             {
-                part.Value.Rotate(1, 0, 1, 0);
-            }
-        }
-
-        public void rotateDownY()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Rotate(1, 0, -1, 0);
-            }
-        }
-
-        public void rotateRightX()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Rotate(1, 1, 0, 0);
-            }
-        }
-
-        public void rotateLeftX()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Rotate(1, -1, 0, 0);
+                part.Value.Rotate(angle, x, y, z);
             }
         }
     }

@@ -29,8 +29,8 @@ namespace ProyectoOpenTK.Utils
         public static Dictionary<string, Stage> loadFromJsonString(string jsonString)
         {
             try
-            {                
-                Dictionary<string, Stage> stages = JsonConvert.DeserializeObject<Dictionary<string, Stage>>(jsonString);                                
+            {
+                Dictionary<string, Stage> stages = JsonConvert.DeserializeObject<Dictionary<string, Stage>>(jsonString);
                 return stages;
             }
             catch (Exception e)

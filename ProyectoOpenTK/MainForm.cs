@@ -163,9 +163,8 @@ namespace ProyectoOpenTK
             float y = 0;
             float z = 0;
 
-           
 
-            juego.moveTo(x, y , z);
+            juego.moveTo(x, y, z);
         }
 
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
@@ -238,6 +237,21 @@ namespace ProyectoOpenTK
 
                 nodex.Parent.Checked = allChecked;
             }
+        }
+
+        private void degressValueNum_ValueChanged(object sender, EventArgs e)
+        {
+            juego.degreesValue = (int)degressValueNum.Value;
+        }
+
+        private void movementValNum_ValueChanged(object sender, EventArgs e)
+        {
+            juego.movementValue = (int)movementValNum.Value;
+        }
+
+        private void incDecValNum_ValueChanged(object sender, EventArgs e)
+        {
+            juego.increaseValue = (int)incDecValNum.Value;
         }
     }
 }

@@ -108,17 +108,17 @@ namespace ProyectoOpenTK.GameLogic
             {
                 if (x > 0 || x < 0)
                 {
-                    modelMatrix *= Matrix4.CreateRotationX(MathHelper.DegreesToRadians(angle));
+                    modelMatrix *= Matrix4.CreateRotationX(MathHelper.DegreesToRadians(angle * x));
                 }
 
                 if (y > 0 || y < 0)
                 {
-                    modelMatrix *= Matrix4.CreateRotationY(MathHelper.DegreesToRadians(angle));
+                    modelMatrix *= Matrix4.CreateRotationY(MathHelper.DegreesToRadians(angle * y));
                 }
 
                 if (z > 0 || z < 0)
                 {
-                    modelMatrix *= Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(angle));
+                    modelMatrix *= Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(angle * z));
                 }
             }
         }

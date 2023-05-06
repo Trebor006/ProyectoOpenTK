@@ -2,9 +2,6 @@
 {
     public interface Rotable
     {
-        void rotateUpY();
-        void rotateDownY();
-        void rotateRightX();
-        void rotateLeftX();
+        void rotate(float angle, float x, float y, float z);
     }
 }
