@@ -91,33 +91,33 @@ namespace ProyectoOpenTK.GameLogic
             }
             else if (e.KeyChar == 'w')
             {
-                moveToUp();
+                moveTo(0, 0.1f, 0);
             }
             else if (e.KeyChar == 's')
             {
-                moveToDown();
+                moveTo(0, -0.1f, 0);
             }
             else if (e.KeyChar == 'a')
             {
-                moveToLeft();
+                moveTo(-0.1f, 0, 0);
             }
             else if (e.KeyChar == 'd')
             {
-                moveToRight();
+                moveTo(0.1f, 0, 0);
             }
             else if (e.KeyChar == 'q')
             {
-                moveToFront();
+                moveTo(0, 0, 0.1f);
             }
             else if (e.KeyChar == 'e')
             {
-                moveToBottom();
+                moveTo(0, 0, -0.1f);
             }
             else if (e.KeyChar == 'r')
             {
                 reset();
             }
-            
+
             else if (e.KeyChar == '8')
             {
                 rotateRightX();
@@ -161,50 +161,11 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        public void moveToUp()
+        public void moveTo(float x, float y, float z)
         {
             foreach (var stages in stages)
             {
-                stages.Value.moveToUp();
-            }
-        }
-
-        public void moveToDown()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.moveToDown();
-            }
-        }
-
-        public void moveToLeft()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.moveToLeft();
-            }
-        }
-
-        public void moveToRight()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.moveToRight();
-            }
-        }
-
-        public void moveToFront()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.moveToFront();
-            }
-        }
-        public void moveToBottom()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.moveToBottom();
+                stages.Value.moveTo(x, y, z);
             }
         }
 

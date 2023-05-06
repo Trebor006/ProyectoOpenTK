@@ -70,8 +70,6 @@
   <ItemGroup>
     <Content Include="bin\Debug\Shaders\shader.frag" />
     <Content Include="bin\Debug\Shaders\shader.vert" />
-    <Content Include="Shaders\shader.frag" />
-    <Content Include="Shaders\shader.vert" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
     <Content Include="Resources\saved_state.json">

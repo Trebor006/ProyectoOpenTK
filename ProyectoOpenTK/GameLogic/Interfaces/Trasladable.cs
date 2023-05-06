@@ -2,11 +2,6 @@
 {
     public interface Trasladable
     {
-        void moveToUp();
-        void moveToDown();
-        void moveToLeft();
-        void moveToRight();
-        void moveToFront();
-        void moveToBottom();
+        void moveTo(float x, float y, float z);
     }
 }

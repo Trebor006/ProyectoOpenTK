@@ -56,51 +56,11 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        public void moveToUp()
+        public void moveTo(float x, float y, float z)
         {
             foreach (var part in parts)
             {
-                part.Value.Translate(0, 0.1f, 0);
-            }
-        }
-
-        public void moveToDown()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Translate(0, -0.1f, 0);
-            }
-        }
-
-        public void moveToLeft()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Translate(-0.1f, 0, 0);
-            }
-        }
-
-        public void moveToRight()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Translate(0.1f, 0, 0);
-            }
-        }
-
-        public void moveToFront()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Translate(0, 0, 0.1f);
-            }
-        }
-
-        public void moveToBottom()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Translate(0, 0, -0.1f);
+                part.Value.Translate(x, y, z);
             }
         }
 

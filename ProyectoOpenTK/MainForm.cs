@@ -41,7 +41,7 @@ namespace ProyectoOpenTK
         {
             return FileHelper.loadFromJson("./Resources/archivito.json");
         }
-        
+
         private static Dictionary<string, Stage> LoadFromJsonString(string fileContent)
         {
             return FileHelper.loadFromJsonString(fileContent);
@@ -85,14 +85,11 @@ namespace ProyectoOpenTK
             generateCheckBoxes(juego.stages);
 
             juego.Run(60);
-
         }
 
         private void generateCheckBoxes(Dictionary<string, Stage> stages)
         {
             treeView1.Nodes.Clear();
-   
-     
 
 
             foreach (var stage in stages)
@@ -100,7 +97,6 @@ namespace ProyectoOpenTK
                 TreeNode parent = new TreeNode();
                 parent.Text = stage.Key;
                 parent.Checked = true;
-                
 
 
                 foreach (var objectx in stage.Value.objects)
@@ -119,7 +115,7 @@ namespace ProyectoOpenTK
                     }
 
                     parent.Nodes.Add(child);
-                }                    
+                }
 
                 treeView1.Nodes.Add(parent);
             }
@@ -132,10 +128,10 @@ namespace ProyectoOpenTK
         private void MainForm_Load(object sender, EventArgs e)
         {
             //Game juego = new Game(800, 600, "Demo OpenTK");
-           // juego.stages = LoadFromJson();
-           // // juego.stages = LoadStage();
-          //  // FileHelper.mapToJson(juego.stages);
-          //  juego.Run(60);
+            // juego.stages = LoadFromJson();
+            // // juego.stages = LoadStage();
+            //  // FileHelper.mapToJson(juego.stages);
+            //  juego.Run(60);
         }
 
         private void SaveState_Click(object sender, EventArgs e)
@@ -158,14 +154,18 @@ namespace ProyectoOpenTK
             */
 
 
-
             //SaveFileDialog dialogoGuardar = new SaveFileDialog();
-
         }
 
         private void UpButton_Click(object sender, EventArgs e)
         {
-            juego.moveToUp();
+            float x = 0;
+            float y = 0;
+            float z = 0;
+
+           
+
+            juego.moveTo(x, y , z);
         }
 
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
@@ -186,24 +186,24 @@ namespace ProyectoOpenTK
             foreach (TreeNode node in treeView1.Nodes)
             {
                 var stage = juego.stages[node.Text];
-                stage.selected = node.Checked;                    
-                Console.WriteLine( node.Text + " :: " + stage.selected);
+                stage.selected = node.Checked;
+                Console.WriteLine(node.Text + " :: " + stage.selected);
 
                 foreach (TreeNode nodeObject in node.Nodes)
                 {
                     var objectX = stage.objects[nodeObject.Text];
                     objectX.selected = nodeObject.Checked;
 
-                    Console.WriteLine( "     "+ nodeObject.Text + " :: " + objectX.selected);
+                    Console.WriteLine("     " + nodeObject.Text + " :: " + objectX.selected);
 
                     foreach (TreeNode nodePart in nodeObject.Nodes)
                     {
                         var part = objectX.parts[nodePart.Text];
                         part.selected = nodePart.Checked;
-                        
-                        Console.WriteLine("     "+"     "+ nodePart.Text + " :: " + part.selected);
+
+                        Console.WriteLine("     " + "     " + nodePart.Text + " :: " + part.selected);
                     }
-                }                
+                }
             }
         }
 
@@ -239,8 +239,5 @@ namespace ProyectoOpenTK
                 nodex.Parent.Checked = allChecked;
             }
         }
-
-        
-
     }
 }

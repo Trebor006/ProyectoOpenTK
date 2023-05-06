@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenTK;
-using OpenTK.Graphics.OpenGL;
 
 namespace ProyectoOpenTK.GameLogic
 {
@@ -61,58 +60,13 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        public void moveToUp()
-        {
-            Console.WriteLine("actualizando posicion moveToUp");
-            foreach (var objects in objects)
-            {
-                objects.Value.moveToUp();
-            }
-        }
-
-        public void moveToDown()
-        {
-            Console.WriteLine("actualizando posicion moveToDown ");
-            foreach (var objects in objects)
-            {
-                objects.Value.moveToDown();
-            }
-        }
-
-        public void moveToLeft()
-        {
-            Console.WriteLine("actualizando posicion moveToLeft");
-            foreach (var objects in objects)
-            {
-                objects.Value.moveToLeft();
-            }
-        }
-
-        public void moveToRight()
-        {
-            Console.WriteLine("actualizando posicion moveToRight");
-            foreach (var objects in objects)
-            {
-                objects.Value.moveToRight();
-            }
-        }
-
-        public void moveToFront()
+        public void moveTo(float x, float y, float z)
         {
             foreach (var objects in objects)
             {
-                objects.Value.moveToFront();
+                objects.Value.moveTo(x, y, z);
             }
         }
-
-        public void moveToBottom()
-        {
-            foreach (var objects in objects)
-            {
-                objects.Value.moveToBottom();
-            }
-        }
-
 
         public void rotateUpY()
         {
