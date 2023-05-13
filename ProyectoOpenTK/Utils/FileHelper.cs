@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
+using ProyectoOpenTK.AnimationLogic;
 using ProyectoOpenTK.GameLogic;
 
 namespace ProyectoOpenTK.Utils
@@ -40,6 +41,20 @@ namespace ProyectoOpenTK.Utils
             }
         }
 
+        public static Libreto loadLibreto(string jsonString)
+        {
+            try
+            {
+                Libreto libreto = JsonConvert.DeserializeObject<Libreto>(jsonString);
+                return libreto;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         public static string mapToJson(Dictionary<string, Stage> stages)
         {
             try
@@ -47,6 +62,28 @@ namespace ProyectoOpenTK.Utils
                 string jsonString = JsonConvert.SerializeObject(stages, Formatting.Indented);
                 string directoryPath = "./Resources/";
                 string finalPath = Path.Combine(directoryPath, "archivito.json");
+
+                using (StreamWriter sw = new StreamWriter(finalPath, false))
+                {
+                    sw.Write(jsonString);
+                }
+
+                return jsonString;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        public static string mapLibretoToJson(Libreto libreto)
+        {
+            try
+            {
+                string jsonString = JsonConvert.SerializeObject(libreto, Formatting.Indented);
+                string directoryPath = "./Resources/";
+                string finalPath = Path.Combine(directoryPath, "libreto.json");
 
                 using (StreamWriter sw = new StreamWriter(finalPath, false))
                 {

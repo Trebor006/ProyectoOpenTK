@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimationLogic\Accion.cs" />
+    <Compile Include="AnimationLogic\Ejecutor.cs" />
+    <Compile Include="AnimationLogic\Libreto.cs" />
+    <Compile Include="AnimationLogic\SubTipoAccion.cs" />
+    <Compile Include="AnimationLogic\TipoAccion.cs" />
     <Compile Include="GameLogic\GraphicObject.cs" />
     <Compile Include="GameLogic\Interfaces\Drawable.cs" />
     <Compile Include="GameLogic\Interfaces\Rotable.cs" />
@@ -72,6 +77,7 @@
     <Content Include="bin\Debug\Shaders\shader.vert" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+    <Content Include="Resources\libreto.json" />
     <Content Include="Resources\saved_state.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -42,21 +42,11 @@ namespace ProyectoOpenTK.GameLogic
             }
         }
 
-        public void increaseSize()
+        public void resize(float x, float y, float z)
         {
-            Console.WriteLine("actualizando increaseSize");
             foreach (var objects in objects)
             {
-                objects.Value.increaseSize();
-            }
-        }
-
-        public void decreaseSize()
-        {
-            Console.WriteLine("actualizando decreaseSize");
-            foreach (var objects in objects)
-            {
-                objects.Value.decreaseSize();
+                objects.Value.resize(x, y, z);
             }
         }
 

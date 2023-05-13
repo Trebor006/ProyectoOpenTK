@@ -31,6 +31,7 @@ namespace ProyectoOpenTK.GameLogic
             this.position = origin;
             this.indices = indices;
             modelMatrix = Matrix4.Identity;
+            this.selected = true;//todo remove this
 
             // Crear y configurar el Vertex Array Object (VAO)
             VAO = GL.GenVertexArray();

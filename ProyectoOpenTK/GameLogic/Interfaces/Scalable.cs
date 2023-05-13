@@ -2,8 +2,6 @@
 {
     public interface Scalable
     {
-        void increaseSize();
-
-        void decreaseSize();
+        void resize(float x, float y, float z);
     }
 }

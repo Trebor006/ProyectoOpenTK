@@ -40,19 +40,11 @@ namespace ProyectoOpenTK.GameLogic
             this.parts.Add(name, part);
         }
 
-        public void increaseSize()
+        public void resize(float x, float y, float z)
         {
             foreach (var part in parts)
             {
-                part.Value.Scale(1.01f, 1.01f, 1.01f);
-            }
-        }
-
-        public void decreaseSize()
-        {
-            foreach (var part in parts)
-            {
-                part.Value.Scale(0.99f, 0.99f, 0.99f);
+                part.Value.Scale(x, y, z);
             }
         }
 

@@ -5,7 +5,9 @@ using Newtonsoft.Json;
 using OpenTK;
 using ProyectoOpenTK.Utils;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProyectoOpenTK.AnimationLogic;
 
 
 namespace ProyectoOpenTK
@@ -20,13 +22,18 @@ namespace ProyectoOpenTK
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
 
-            //Game juego = new Game(800, 600, "Demo OpenTK");
-            //juego.stages = LoadFromJson();
-            // juego.stages = LoadStage();
-            //FileHelper.mapToJson(juego.stages);
-            //juego.Run(60);
-        }
+            // Libreto libreto = generarLibreto();
+            // FileHelper.mapLibretoToJson(libreto);
 
+            // Game juego = new Game(800, 600, "Demo OpenTK");
+            // // juego.stages = LoadFromJson();
+            // juego.stages = LoadStage();
+            // // FileHelper.mapToJson(juego.stages);
+            //
+            // ejecutarLibretoAutomaticamente(juego, libreto);
+            // Console.WriteLine("Juego Iniciado");
+            // juego.Run(60);
+        }
 
         public static Dictionary<string, Stage> LoadStage()
         {
@@ -186,6 +193,45 @@ namespace ProyectoOpenTK
             stages.Add("HouseAndCar", houseAndCar);
 
             return stages;
+        }
+
+
+        private static Libreto generarLibreto()
+        {
+            List<Accion> acciones = new List<Accion>();
+            Accion accion1 = new Accion(TipoAccion.MOVER, SubTipoAccion.ARRIBA, 1f, 5.0f);
+            Accion accion2 = new Accion(TipoAccion.MOVER, SubTipoAccion.IZQUIERDA, 1f, 3.0f);
+
+            Accion accion3 = new Accion(TipoAccion.MOVER, SubTipoAccion.DERECHA, 5f, 10.0f);
+            Accion accion4 = new Accion(TipoAccion.MOVER, SubTipoAccion.ABAJO, 10f, 5.0f);
+
+            Accion accion5 = new Accion(TipoAccion.ROTAR, SubTipoAccion.ROTAR_EJE_X, 1f, 10.0f, 2f);
+            Accion accion6 = new Accion(TipoAccion.ROTAR, SubTipoAccion.ROTAR_EJE_Y_NEGATIVE, 1f, 10.0f, 3f);
+
+            Accion accion7 = new Accion(TipoAccion.ESCALAR, SubTipoAccion.AGRANDAR, 5f, 10.0f);
+            Accion accion8 = new Accion(TipoAccion.ESCALAR, SubTipoAccion.ACHICAR, 10f, 10.0f);
+
+            acciones.Add(accion1);
+            acciones.Add(accion2);
+            acciones.Add(accion3);
+            acciones.Add(accion4);
+            acciones.Add(accion5);
+            acciones.Add(accion6);
+            acciones.Add(accion7);
+            acciones.Add(accion8);
+
+            Libreto libreto = new Libreto();
+            libreto.acciones = acciones;
+
+            return libreto;
+        }
+
+        public static async void ejecutarLibretoAutomaticamente(Game juego, Libreto libreto)
+        {
+            Console.WriteLine("El juego deberia haberse iniciado ya");
+            await Task.Delay(3000); // Esperar 10 segundos (10000 milisegundos)
+            Ejecutor ejecutor = new Ejecutor(libreto);
+            ejecutor.Play(juego);
         }
     }
 }

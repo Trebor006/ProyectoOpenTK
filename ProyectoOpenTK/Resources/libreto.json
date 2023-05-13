@@ -1,0 +1,60 @@
+{
+  "acciones": [
+    {
+      "tipo": 0,
+      "subtipo": 0,
+      "inicio": 1.0,
+      "duracion": 5.0,
+      "grados": 0.0
+    },
+    {
+      "tipo": 0,
+      "subtipo": 3,
+      "inicio": 1.0,
+      "duracion": 3.0,
+      "grados": 0.0
+    },
+    {
+      "tipo": 0,
+      "subtipo": 2,
+      "inicio": 5.0,
+      "duracion": 10.0,
+      "grados": 0.0
+    },
+    {
+      "tipo": 0,
+      "subtipo": 1,
+      "inicio": 10.0,
+      "duracion": 5.0,
+      "grados": 0.0
+    },
+    {
+      "tipo": 2,
+      "subtipo": 6,
+      "inicio": 1.0,
+      "duracion": 10.0,
+      "grados": 2.0
+    },
+    {
+      "tipo": 2,
+      "subtipo": 9,
+      "inicio": 1.0,
+      "duracion": 10.0,
+      "grados": 3.0
+    },
+    {
+      "tipo": 1,
+      "subtipo": 12,
+      "inicio": 5.0,
+      "duracion": 10.0,
+      "grados": 0.0
+    },
+    {
+      "tipo": 1,
+      "subtipo": 13,
+      "inicio": 10.0,
+      "duracion": 10.0,
+      "grados": 0.0
+    }
+  ]
+}

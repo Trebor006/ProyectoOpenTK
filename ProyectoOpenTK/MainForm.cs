@@ -23,6 +23,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using OpenTK.Input;
+using ProyectoOpenTK.AnimationLogic;
 
 
 namespace ProyectoOpenTK
@@ -30,6 +31,7 @@ namespace ProyectoOpenTK
     public partial class MainForm : Form
     {
         private Game juego;
+        private Ejecutor ejecutor;
 
 
         public MainForm()
@@ -252,6 +254,50 @@ namespace ProyectoOpenTK
         private void incDecValNum_ValueChanged(object sender, EventArgs e)
         {
             juego.increaseValue = (int)incDecValNum.Value;
+        }
+
+        private void selectLibreto_Click(object sender, EventArgs e)
+        {
+            var fileContent = string.Empty;
+
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = @"D:\",
+                Title = "Seleccione Libreto",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "json",
+                Filter = "json files (*.json)|*.json",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fileStream = openFileDialog1.OpenFile();
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    fileContent = reader.ReadToEnd();
+                }
+            }
+
+
+            var libreto = FileHelper.loadLibreto(fileContent);
+
+            this.ejecutor = new Ejecutor(libreto);
+            
+            MessageBox.Show("El archivo ha sido cargado correctamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void PlayLibreto_Click(object sender, EventArgs e)
+        {
+            this.ejecutor.Play(this.juego);
         }
     }
 }

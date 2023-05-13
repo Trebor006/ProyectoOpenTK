@@ -41,6 +41,8 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.movementValNum = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.selectLibreto = new System.Windows.Forms.Button();
+            this.PlayLibreto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.degressValueNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incDecValNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movementValNum)).BeginInit();
@@ -58,7 +60,7 @@
             // 
             // SaveState
             // 
-            this.SaveState.Location = new System.Drawing.Point(12, 41);
+            this.SaveState.Location = new System.Drawing.Point(12, 70);
             this.SaveState.Name = "SaveState";
             this.SaveState.Size = new System.Drawing.Size(149, 23);
             this.SaveState.TabIndex = 21;
@@ -68,7 +70,7 @@
             // 
             // UpButton
             // 
-            this.UpButton.Location = new System.Drawing.Point(327, 180);
+            this.UpButton.Location = new System.Drawing.Point(425, 172);
             this.UpButton.Name = "UpButton";
             this.UpButton.Size = new System.Drawing.Size(75, 23);
             this.UpButton.TabIndex = 22;
@@ -78,7 +80,7 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 84);
+            this.treeView1.Location = new System.Drawing.Point(12, 100);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(175, 486);
             this.treeView1.TabIndex = 24;
@@ -86,7 +88,7 @@
             // 
             // degressValueNum
             // 
-            this.degressValueNum.Location = new System.Drawing.Point(381, 32);
+            this.degressValueNum.Location = new System.Drawing.Point(479, 24);
             this.degressValueNum.Name = "degressValueNum";
             this.degressValueNum.Size = new System.Drawing.Size(120, 20);
             this.degressValueNum.TabIndex = 25;
@@ -100,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(222, 32);
+            this.label1.Location = new System.Drawing.Point(320, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 26;
@@ -109,7 +111,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(222, 66);
+            this.label2.Location = new System.Drawing.Point(320, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 27;
@@ -118,7 +120,7 @@
             // incDecValNum
             // 
             this.incDecValNum.DecimalPlaces = 2;
-            this.incDecValNum.Location = new System.Drawing.Point(381, 66);
+            this.incDecValNum.Location = new System.Drawing.Point(479, 58);
             this.incDecValNum.Maximum = new decimal(new int[] {
             10,
             0,
@@ -137,7 +139,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(228, 161);
+            this.checkBox1.Location = new System.Drawing.Point(326, 153);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(66, 17);
             this.checkBox1.TabIndex = 29;
@@ -147,7 +149,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(228, 184);
+            this.checkBox2.Location = new System.Drawing.Point(326, 176);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(66, 17);
             this.checkBox2.TabIndex = 30;
@@ -157,7 +159,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(228, 207);
+            this.checkBox3.Location = new System.Drawing.Point(326, 199);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(66, 17);
             this.checkBox3.TabIndex = 31;
@@ -167,7 +169,7 @@
             // movementValNum
             // 
             this.movementValNum.DecimalPlaces = 1;
-            this.movementValNum.Location = new System.Drawing.Point(381, 97);
+            this.movementValNum.Location = new System.Drawing.Point(479, 89);
             this.movementValNum.Maximum = new decimal(new int[] {
             10,
             0,
@@ -186,17 +188,39 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(222, 99);
+            this.label3.Location = new System.Drawing.Point(320, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 32;
             this.label3.Text = "Movimiento";
             // 
+            // selectLibreto
+            // 
+            this.selectLibreto.Location = new System.Drawing.Point(12, 41);
+            this.selectLibreto.Name = "selectLibreto";
+            this.selectLibreto.Size = new System.Drawing.Size(149, 23);
+            this.selectLibreto.TabIndex = 34;
+            this.selectLibreto.Text = "Seleccionar Libreto";
+            this.selectLibreto.UseVisualStyleBackColor = true;
+            this.selectLibreto.Click += new System.EventHandler(this.selectLibreto_Click);
+            // 
+            // PlayLibreto
+            // 
+            this.PlayLibreto.Location = new System.Drawing.Point(167, 41);
+            this.PlayLibreto.Name = "PlayLibreto";
+            this.PlayLibreto.Size = new System.Drawing.Size(75, 23);
+            this.PlayLibreto.TabIndex = 35;
+            this.PlayLibreto.Text = "Play";
+            this.PlayLibreto.UseVisualStyleBackColor = true;
+            this.PlayLibreto.Click += new System.EventHandler(this.PlayLibreto_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 582);
+            this.ClientSize = new System.Drawing.Size(835, 622);
+            this.Controls.Add(this.PlayLibreto);
+            this.Controls.Add(this.selectLibreto);
             this.Controls.Add(this.movementValNum);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox3);
@@ -235,5 +259,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.NumericUpDown movementValNum;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button selectLibreto;
+        private System.Windows.Forms.Button PlayLibreto;
     }
 }

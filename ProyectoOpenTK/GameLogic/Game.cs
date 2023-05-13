@@ -91,11 +91,11 @@ namespace ProyectoOpenTK.GameLogic
         {
             if (e.KeyChar == '+')
             {
-                increaseSize();
+                resize(1.01f, 1.01f, 1.01f);
             }
             else if (e.KeyChar == '-')
             {
-                decreaseSize();
+                resize(0.99f, 0.99f, 0.99f);
             }
             else if (e.KeyChar == 'w')
             {
@@ -163,22 +163,6 @@ namespace ProyectoOpenTK.GameLogic
             GL.LoadIdentity();
         }
 
-        public void increaseSize()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.increaseSize();
-            }
-        }
-
-        public void decreaseSize()
-        {
-            foreach (var stages in stages)
-            {
-                stages.Value.decreaseSize();
-            }
-        }
-
         public void moveTo(float x, float y, float z)
         {
             foreach (var stages in stages)
@@ -189,9 +173,20 @@ namespace ProyectoOpenTK.GameLogic
 
         public void rotate(float angle, float x, float y, float z)
         {
+            Console.WriteLine("rotate");
             foreach (var stages in stages)
             {
                 stages.Value.rotate(angle, x, y, z);
+            }
+        }
+
+        public void resize(float x, float y, float z)
+        {
+            Console.WriteLine("resize");
+
+            foreach (var stages in stages)
+            {
+                stages.Value.resize(x, y, y);
             }
         }
     }
