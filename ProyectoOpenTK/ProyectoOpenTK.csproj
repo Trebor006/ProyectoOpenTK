@@ -50,8 +50,8 @@
     <Compile Include="AnimationLogic\Accion.cs" />
     <Compile Include="AnimationLogic\Ejecutor.cs" />
     <Compile Include="AnimationLogic\Libreto.cs" />
-    <Compile Include="AnimationLogic\SubTipoAccion.cs" />
     <Compile Include="AnimationLogic\TipoAccion.cs" />
+    <Compile Include="AnimationLogic\Transformacion.cs" />
     <Compile Include="GameLogic\GraphicObject.cs" />
     <Compile Include="GameLogic\Interfaces\Drawable.cs" />
     <Compile Include="GameLogic\Interfaces\Rotable.cs" />
@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\Shader.cs" />
+    <Compile Include="Utils\VelocityHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\Shaders\shader.frag" />

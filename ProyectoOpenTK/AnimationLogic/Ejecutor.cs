@@ -3,134 +3,94 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using OpenTK;
 using ProyectoOpenTK.GameLogic;
+using ProyectoOpenTK.Utils;
 
 namespace ProyectoOpenTK.AnimationLogic
 {
     public class Ejecutor
     {
         public Libreto libreto { get; set; }
-        public float velocity { get; set; }
-        public float velocityResize { get; set; }
-        public float velocityRotation { get; set; }
+        public Dictionary<string, GraphicObject> objects;
 
-        public Ejecutor(Libreto libreto)
+        public Ejecutor(Libreto libreto, Dictionary<string, GraphicObject> objects)
         {
             this.libreto = libreto;
-            velocity = 0.000001f;
-            velocityResize = 0.00001f;
-            velocityRotation = 0.0001f;
+            this.objects = objects;
         }
 
-        public void Play1(Game juego)
+        public async Task Play()
         {
-            foreach (var action in this.libreto.acciones)
-            {
-                DateTime tiempoFin = DateTime.Now.AddSeconds(action.duracion);
+            var tasks = this.libreto.acciones.SelectMany(
+                accion => accion.transformaciones.Select(transformacion =>
+                    Task.Run(async () =>
+                    {
+                        await Task.Delay(TimeSpan.FromMilliseconds(transformacion.inicio));
 
-                accionar(juego, tiempoFin, action);
-            }
-        }
+                        DateTime tiempoFin = DateTime.Now.AddMilliseconds(transformacion.duracion);
 
-
-        public async Task Play(Game juego)
-        {
-            var tasks = this.libreto.acciones.Select(action => Task.Run(async () =>
-            {
-                await Task.Delay(TimeSpan.FromSeconds(action.inicio));
-
-                DateTime tiempoFin = DateTime.Now.AddSeconds(action.duracion);
-
-                accionar(juego, tiempoFin, action);
-            }));
+                        accionar(objects[accion.nombreObjeto], tiempoFin, transformacion);
+                    })));
 
             await Task.WhenAll(tasks);
         }
 
-        private void accionar(Game juego, DateTime tiempoFin, Accion action)
+        private void accionar(GraphicObject objeto, DateTime tiempoFin, Transformacion transformacion)
         {
-            while (DateTime.Now < tiempoFin)
-            {
-                if (action.tipo == TipoAccion.MOVER)
-                {
-                    accionarMover(juego, action);
-                }
-                else if (action.tipo == TipoAccion.ROTAR)
-                {
-                    accionarRotar(juego, action);
-                }
-                else if (action.tipo == TipoAccion.ESCALAR)
-                {
-                    accionarEscalar(juego, action);
-                }
-            }
-        }
+            double fpsObjetivo = 60.0;
+            double fps = DisplayDevice.Default.RefreshRate;
+            double factorCompensacion = fpsObjetivo / fps;
+            double distancia = transformacion.valor; /* valor de la distancia en píxeles */
+            double tiempo = transformacion.duracion / 1000.0; // Convertir a segundos
+            double velocity = (distancia / tiempo) * factorCompensacion;
 
-        private void accionarMover(Game juego, Accion action)
-        {
-            if (action.subtipo == SubTipoAccion.ARRIBA)
-            {
-                juego.moveTo(0, velocity, 0);
-            }
-            else if (action.subtipo == SubTipoAccion.ABAJO)
-            {
-                juego.moveTo(0, -velocity, 0);
-            }
-            else if (action.subtipo == SubTipoAccion.DERECHA)
-            {
-                juego.moveTo(velocity, 0, 0);
-            }
-            else if (action.subtipo == SubTipoAccion.IZQUIERDA)
-            {
-                juego.moveTo(-velocity, 0, 0);
-            }
-            else if (action.subtipo == SubTipoAccion.AL_FONDO)
-            {
-                juego.moveTo(0, 0, -velocity);
-            }
-            else if (action.subtipo == SubTipoAccion.AL_FRENTE)
-            {
-                juego.moveTo(0, 0, velocity);
-            }
-        }
+            DateTime tiempoActual = DateTime.Now;
 
-        private void accionarRotar(Game juego, Accion action)
-        {
-            if (action.subtipo == SubTipoAccion.ROTAR_EJE_X)
-            {
-                juego.rotate(action.grados * velocityRotation, 1, 0, 0);
-            }
-            else if (action.subtipo == SubTipoAccion.ROTAR_EJE_X_NEGATIVE)
-            {
-                juego.rotate(action.grados * velocityRotation, -1, 0, 0);
-            }
-            else if (action.subtipo == SubTipoAccion.ROTAR_EJE_Y)
-            {
-                juego.rotate(action.grados * velocityRotation, 0, 1, 0);
-            }
-            else if (action.subtipo == SubTipoAccion.ROTAR_EJE_Y_NEGATIVE)
-            {
-                juego.rotate(action.grados * velocityRotation, 0, -1, 0);
-            }
-            else if (action.subtipo == SubTipoAccion.ROTAR_EJE_Z)
-            {
-                juego.rotate(action.grados * velocityRotation, 0, 0, 1);
-            }
-            else if (action.subtipo == SubTipoAccion.ROTAR_EJE_Z_NEGATIVE)
-            {
-                juego.rotate(action.grados * velocityRotation, 0, 0, -1);
-            }
-        }
+            Console.WriteLine("velocity " + velocity);
 
-        private void accionarEscalar(Game juego, Accion action)
-        {
-            if (action.subtipo == SubTipoAccion.AGRANDAR)
+            while (DateTime.Now <= tiempoFin)
             {
-                juego.resize(1 + velocityResize, 1 + velocityResize, 1 + velocityResize);
-            }
-            else if (action.subtipo == SubTipoAccion.ACHICAR)
-            {
-                juego.resize(1 - velocityResize, 1 - velocityResize, 1 - velocityResize);
+                DateTime tiempoAnterior = tiempoActual;
+                tiempoActual = DateTime.Now;
+
+                double deltaTime = (tiempoActual - tiempoAnterior).TotalSeconds;
+                Console.WriteLine("Delta " + deltaTime);
+
+                if (transformacion.tipo == TipoAccion.MOVER)
+                {
+                    objeto.moveTo(
+                        (float)(velocity * transformacion.x * deltaTime),
+                        (float)(velocity * transformacion.y * deltaTime),
+                        (float)(velocity * transformacion.z * deltaTime)
+                    );
+                }
+                else if (transformacion.tipo == TipoAccion.ROTAR)
+                {
+                    objeto.rotate(
+                        (float)((float)velocity * deltaTime),
+                        (float)(transformacion.x),
+                        (float)(transformacion.y),
+                        (float)(transformacion.z)
+                    );
+                }
+                else if (transformacion.tipo == TipoAccion.ESCALAR)
+                {
+                    float scaleFactorX = 1 + (float)(transformacion.x * deltaTime / tiempo);
+                    float scaleFactorY = 1 + (float)(transformacion.y * deltaTime / tiempo);
+                    float scaleFactorZ = 1 + (float)(transformacion.z * deltaTime / tiempo);
+
+                    if (scaleFactorX < 0) scaleFactorX = 0.01f;
+                    if (scaleFactorY < 0) scaleFactorY = 0.01f;
+                    if (scaleFactorZ < 0) scaleFactorZ = 0.01f;
+
+                    objeto.resize(
+                        scaleFactorX,
+                        scaleFactorY,
+                        scaleFactorZ
+                    );
+                }
             }
         }
     }

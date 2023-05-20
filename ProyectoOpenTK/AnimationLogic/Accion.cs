@@ -1,33 +1,21 @@
-﻿namespace ProyectoOpenTK.AnimationLogic
+﻿using System.Collections.Generic;
+
+namespace ProyectoOpenTK.AnimationLogic
 {
     public class Accion
     {
-        public TipoAccion tipo { get; set; }
-        public SubTipoAccion subtipo { get; set; }
-        public float inicio { get; set; }
-        public float duracion { get; set; }
-        public float grados { get; set; }
+        public string nombreObjeto { get; set; }
+        public List<Transformacion> transformaciones { get; set; }
 
         public Accion()
         {
+            transformaciones = new List<Transformacion>();
         }
 
-        public Accion(TipoAccion tipo, SubTipoAccion subtipo, float inicio, float duracion)
+        public Accion(string nombreObjeto, List<Transformacion> transformaciones)
         {
-            this.tipo = tipo;
-            this.subtipo = subtipo;
-            this.inicio = inicio;
-            this.duracion = duracion;
-            this.grados = 0;
-        }
-
-        public Accion(TipoAccion tipo, SubTipoAccion subtipo, float inicio, float duracion, float grados)
-        {
-            this.tipo = tipo;
-            this.subtipo = subtipo;
-            this.inicio = inicio;
-            this.duracion = duracion;
-            this.grados = grados;
+            this.nombreObjeto = nombreObjeto;
+            this.transformaciones = transformaciones;
         }
     }
 }

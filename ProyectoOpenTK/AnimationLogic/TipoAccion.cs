@@ -1,7 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
-
-namespace ProyectoOpenTK.AnimationLogic
+﻿namespace ProyectoOpenTK.AnimationLogic
 {
     public enum TipoAccion
     {

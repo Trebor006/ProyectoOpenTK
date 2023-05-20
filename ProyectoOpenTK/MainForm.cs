@@ -200,9 +200,9 @@ namespace ProyectoOpenTK
                     foreach (TreeNode nodePart in nodeObject.Nodes)
                     {
                         var part = objectX.parts[nodePart.Text];
-                        part.selected = nodePart.Checked;
+                        // part.selected = nodePart.Checked;
 
-                        Console.WriteLine("     " + "     " + nodePart.Text + " :: " + part.selected);
+                        Console.WriteLine("     " + "     " + nodePart.Text);
                     }
                 }
             }
@@ -289,15 +289,15 @@ namespace ProyectoOpenTK
 
             var libreto = FileHelper.loadLibreto(fileContent);
 
-            this.ejecutor = new Ejecutor(libreto);
-            
-            MessageBox.Show("El archivo ha sido cargado correctamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.ejecutor = new Ejecutor(libreto, juego.generateObjectsDetailFromStages());
 
+            MessageBox.Show("El archivo ha sido cargado correctamente.", "Confirmación", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void PlayLibreto_Click(object sender, EventArgs e)
         {
-            this.ejecutor.Play(this.juego);
+            this.ejecutor.Play();
         }
     }
 }

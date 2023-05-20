@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using Newtonsoft.Json;
 using OpenTK;
@@ -16,7 +17,6 @@ namespace ProyectoOpenTK.GameLogic
 
         [JsonIgnore] private int vertexCount;
 
-        public bool selected { get; set; }
         public float[] vertices { get; set; }
         public int[] indices;
 
@@ -31,7 +31,6 @@ namespace ProyectoOpenTK.GameLogic
             this.position = origin;
             this.indices = indices;
             modelMatrix = Matrix4.Identity;
-            this.selected = true;//todo remove this
 
             // Crear y configurar el Vertex Array Object (VAO)
             VAO = GL.GenVertexArray();
@@ -65,6 +64,7 @@ namespace ProyectoOpenTK.GameLogic
             GL.PushMatrix();
             var matrix4 = modelMatrix;
             GL.MultMatrix(ref matrix4);
+            GL.Color3(Color.White);
 
             GL.BindVertexArray(VAO);
             GL.DrawElements(PrimitiveType.LineLoop, vertexCount, DrawElementsType.UnsignedInt, 0);
@@ -88,39 +88,30 @@ namespace ProyectoOpenTK.GameLogic
 
         public void Translate(float x, float y, float z)
         {
-            if (selected)
-            {
-                modelMatrix *= Matrix4.CreateTranslation(new Vector3(x, y, z));
-            }
+            modelMatrix *= Matrix4.CreateTranslation(new Vector3(x, y, z));
         }
 
         public void Scale(float x, float y, float z)
         {
-            if (selected)
-            {
-                Matrix4 scaleMatrix = Matrix4.CreateScale(x, y, z);
-                modelMatrix *= scaleMatrix;
-            }
+            Matrix4 scaleMatrix = Matrix4.CreateScale(x, y, z);
+            modelMatrix *= scaleMatrix;
         }
 
         public void Rotate(float angle, float x, float y, float z)
         {
-            if (selected)
+            if (x > 0 || x < 0)
             {
-                if (x > 0 || x < 0)
-                {
-                    modelMatrix *= Matrix4.CreateRotationX(MathHelper.DegreesToRadians(angle * x));
-                }
+                modelMatrix *= Matrix4.CreateRotationX(MathHelper.DegreesToRadians(angle * x));
+            }
 
-                if (y > 0 || y < 0)
-                {
-                    modelMatrix *= Matrix4.CreateRotationY(MathHelper.DegreesToRadians(angle * y));
-                }
+            if (y > 0 || y < 0)
+            {
+                modelMatrix *= Matrix4.CreateRotationY(MathHelper.DegreesToRadians(angle * y));
+            }
 
-                if (z > 0 || z < 0)
-                {
-                    modelMatrix *= Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(angle * z));
-                }
+            if (z > 0 || z < 0)
+            {
+                modelMatrix *= Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(angle * z));
             }
         }
     }

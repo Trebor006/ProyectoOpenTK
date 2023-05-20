@@ -14,25 +14,25 @@ namespace ProyectoOpenTK
 {
     internal class Program
     {
-        [STAThread] // Atributo STAThread
-        // public static void Main(string[] args)
-        static void Main()
+        // [STAThread] // Atributo STAThread
+        public static void Main(string[] args)
+            // static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            // Application.EnableVisualStyles();
+            // Application.SetCompatibleTextRenderingDefault(false);
+            // Application.Run(new MainForm());
 
-            // Libreto libreto = generarLibreto();
-            // FileHelper.mapLibretoToJson(libreto);
+            Libreto libreto = generarLibreto();
+            FileHelper.mapLibretoToJson(libreto);
 
-            // Game juego = new Game(800, 600, "Demo OpenTK");
-            // // juego.stages = LoadFromJson();
-            // juego.stages = LoadStage();
+            Game juego = new Game(800, 600, "Demo OpenTK");
+            // juego.stages = LoadFromJson();
+            juego.stages = LoadStage();
             // // FileHelper.mapToJson(juego.stages);
             //
-            // ejecutarLibretoAutomaticamente(juego, libreto);
+            ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
             // Console.WriteLine("Juego Iniciado");
-            // juego.Run(60);
+            juego.Run(60);
         }
 
         public static Dictionary<string, Stage> LoadStage()
@@ -199,26 +199,108 @@ namespace ProyectoOpenTK
         private static Libreto generarLibreto()
         {
             List<Accion> acciones = new List<Accion>();
-            Accion accion1 = new Accion(TipoAccion.MOVER, SubTipoAccion.ARRIBA, 1f, 5.0f);
-            Accion accion2 = new Accion(TipoAccion.MOVER, SubTipoAccion.IZQUIERDA, 1f, 3.0f);
 
-            Accion accion3 = new Accion(TipoAccion.MOVER, SubTipoAccion.DERECHA, 5f, 10.0f);
-            Accion accion4 = new Accion(TipoAccion.MOVER, SubTipoAccion.ABAJO, 10f, 5.0f);
+            List<Transformacion> transformacionesObjeto1 = new List<Transformacion>
+            {
+                new Transformacion
+                    { tipo = TipoAccion.MOVER, valor = 10, inicio = 0, duracion = 3000, x = 1, y = 1, z = 0 },
 
-            Accion accion5 = new Accion(TipoAccion.ROTAR, SubTipoAccion.ROTAR_EJE_X, 1f, 10.0f, 2f);
-            Accion accion6 = new Accion(TipoAccion.ROTAR, SubTipoAccion.ROTAR_EJE_Y_NEGATIVE, 1f, 10.0f, 3f);
+                new Transformacion
+                    { tipo = TipoAccion.MOVER, valor = 10, inicio = 3000, duracion = 3000, x = 0, y = -1, z = 0 },
+            };
+            Accion accion1 = new Accion("house", transformacionesObjeto1);
 
-            Accion accion7 = new Accion(TipoAccion.ESCALAR, SubTipoAccion.AGRANDAR, 5f, 10.0f);
-            Accion accion8 = new Accion(TipoAccion.ESCALAR, SubTipoAccion.ACHICAR, 10f, 10.0f);
+            Accion accion2 = new Accion
+            {
+                nombreObjeto = "house",
+                transformaciones = new List<Transformacion>
+                {
+                    new Transformacion
+                    {
+                        tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 7000, duracion = 2000, x = -1, y = -1, z = -1
+                    },
+                    new Transformacion
+                    {
+                        tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 10000, duracion = 2000, x = 1, y = 1, z = 1
+                    },
+                    new Transformacion
+                        { tipo = TipoAccion.MOVER, valor = 10, inicio = 0, duracion = 3000, x = 1, y = 1, z = 0 },
+
+                    new Transformacion
+                        { tipo = TipoAccion.MOVER, valor = 10, inicio = 3000, duracion = 3000, x = 0, y = -1, z = 0 },
+                    
+                    
+                }
+            };
+            
+            Accion accion1Car = new Accion
+            {
+                nombreObjeto = "car",
+                transformaciones = new List<Transformacion>
+                {
+                    new Transformacion
+                    {
+                        tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 7000, duracion = 2000, x = -1, y = -1, z = -1
+                    },
+                    new Transformacion
+                    {
+                        tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 10000, duracion = 2000, x = 1, y = 1, z = 1
+                    },
+                    new Transformacion
+                        { tipo = TipoAccion.ROTAR, valor = 60f, inicio = 15000, duracion = 4000, x = 0, y = 1, z = 0 },
+                    new Transformacion
+                        { tipo = TipoAccion.MOVER, valor = 20f, inicio = 15000, duracion = 4000, x = 1, y = 0, z = 0 },
+                    
+                    new Transformacion
+                        { tipo = TipoAccion.ROTAR, valor = 60f, inicio = 20000, duracion = 2000, x = 0, y = -1, z = 0 },
+                    new Transformacion
+                        { tipo = TipoAccion.MOVER, valor = 20f, inicio = 20000, duracion = 2000, x = -1, y = 0, z = 0 }
+                }
+            };
+
+            Accion accion3 = new Accion
+            {
+                nombreObjeto = "house",
+                transformaciones = new List<Transformacion>
+                {
+                    new Transformacion
+                        { tipo = TipoAccion.ROTAR, valor = 60f, inicio = 15000, duracion = 2000, x = 0, y = 1, z = 0 },
+                    new Transformacion
+                        { tipo = TipoAccion.MOVER, valor = 20f, inicio = 15000, duracion = 2000, x = 1, y = 0, z = 0 },
+                    
+                    new Transformacion
+                        { tipo = TipoAccion.ROTAR, valor = 60f, inicio = 18000, duracion = 2000, x = 0, y = -1, z = 0 },
+                    new Transformacion
+                        { tipo = TipoAccion.MOVER, valor = 20f, inicio = 18000, duracion = 2000, x = -1, y = 0, z = 0 }
+                }
+            };
+
+            Accion accion4 = new Accion
+            {
+                nombreObjeto = "house",
+                transformaciones = new List<Transformacion>
+                {
+                    new Transformacion { tipo = TipoAccion.MOVER, valor = 40, inicio = 22000, duracion = 1000, x = -1, y = 0, z = 0 },
+                    new Transformacion { tipo = TipoAccion.ROTAR, valor = 90, inicio = 22000, duracion = 5000, x = 1, y = 0, z = 0 }
+                }
+            };
+            
+            Accion accion5 = new Accion
+            {
+                nombreObjeto = "house",
+                transformaciones = new List<Transformacion>
+                {
+                    new Transformacion { tipo = TipoAccion.MOVER, valor = 20, inicio = 30000, duracion = 10000, x = 1, y = 0, z = 0 },
+                    new Transformacion { tipo = TipoAccion.ROTAR, valor = 90, inicio = 30000, duracion = 5000, x = -1, y = 0, z = 0 }
+                }
+            };
 
             acciones.Add(accion1);
             acciones.Add(accion2);
             acciones.Add(accion3);
             acciones.Add(accion4);
             acciones.Add(accion5);
-            acciones.Add(accion6);
-            acciones.Add(accion7);
-            acciones.Add(accion8);
+            acciones.Add(accion1Car);
 
             Libreto libreto = new Libreto();
             libreto.acciones = acciones;
@@ -226,12 +308,14 @@ namespace ProyectoOpenTK
             return libreto;
         }
 
-        public static async void ejecutarLibretoAutomaticamente(Game juego, Libreto libreto)
+        public static async void ejecutarLibretoAutomaticamente(Dictionary<string, GraphicObject> objects,
+            Libreto libreto)
         {
             Console.WriteLine("El juego deberia haberse iniciado ya");
             await Task.Delay(3000); // Esperar 10 segundos (10000 milisegundos)
-            Ejecutor ejecutor = new Ejecutor(libreto);
-            ejecutor.Play(juego);
+            Ejecutor ejecutor = new Ejecutor(libreto, objects);
+            await ejecutor.Play();
+            Console.WriteLine("finalizado");
         }
     }
 }

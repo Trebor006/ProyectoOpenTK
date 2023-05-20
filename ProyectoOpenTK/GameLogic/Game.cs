@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
@@ -65,7 +66,35 @@ namespace ProyectoOpenTK.GameLogic
             }
 
             //-----------------------
+            dibujarRejilla();
+
             Context.SwapBuffers();
+        }
+
+        private void dibujarRejilla()
+        {
+            GL.Begin(PrimitiveType.Lines);
+            GL.Color3(Color.Red);
+
+            float width = Width;
+            float height = Height;
+            float spacing = 5.0f;
+
+            // Dibujar líneas verticales
+            for (float x = -width / 2; x <= width / 2; x += spacing)
+            {
+                GL.Vertex2(x, -height / 2);
+                GL.Vertex2(x, height / 2);
+            }
+
+            // Dibujar líneas horizontales
+            for (float y = -height / 2; y <= height / 2; y += spacing)
+            {
+                GL.Vertex2(-width / 2, y);
+                GL.Vertex2(width / 2, y);
+            }
+
+            GL.End();
         }
 
         //-----------------------------------------------------------------------------------------------------------------
@@ -186,8 +215,23 @@ namespace ProyectoOpenTK.GameLogic
 
             foreach (var stages in stages)
             {
-                stages.Value.resize(x, y, y);
+                stages.Value.resize(x, y, z);
             }
+        }
+
+        public Dictionary<string, GraphicObject> generateObjectsDetailFromStages()
+        {
+            Dictionary<string, GraphicObject> allObjects = new Dictionary<string, GraphicObject>();
+
+            foreach (var stage in stages.Values)
+            {
+                foreach (KeyValuePair<string, GraphicObject> obj in stage.objects)
+                {
+                    allObjects[obj.Key] = obj.Value;
+                }
+            }
+
+            return allObjects;
         }
     }
 }
