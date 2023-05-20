@@ -1,60 +1,214 @@
 {
   "acciones": [
     {
-      "tipo": 0,
-      "subtipo": 0,
-      "inicio": 1.0,
-      "duracion": 5.0,
-      "grados": 0.0
+      "nombreObjeto": "house",
+      "transformaciones": [
+        {
+          "tipo": 0,
+          "inicio": 0,
+          "duracion": 3000,
+          "valor": 10.0,
+          "x": 1,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "tipo": 0,
+          "inicio": 3000,
+          "duracion": 3000,
+          "valor": 10.0,
+          "x": 0,
+          "y": -1,
+          "z": 0
+        }
+      ]
     },
     {
-      "tipo": 0,
-      "subtipo": 3,
-      "inicio": 1.0,
-      "duracion": 3.0,
-      "grados": 0.0
+      "nombreObjeto": "house",
+      "transformaciones": [
+        {
+          "tipo": 1,
+          "inicio": 7000,
+          "duracion": 2000,
+          "valor": 0.5,
+          "x": -1,
+          "y": -1,
+          "z": -1
+        },
+        {
+          "tipo": 1,
+          "inicio": 10000,
+          "duracion": 2000,
+          "valor": 0.5,
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        {
+          "tipo": 0,
+          "inicio": 0,
+          "duracion": 3000,
+          "valor": 10.0,
+          "x": 1,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "tipo": 0,
+          "inicio": 3000,
+          "duracion": 3000,
+          "valor": 10.0,
+          "x": 0,
+          "y": -1,
+          "z": 0
+        }
+      ]
     },
     {
-      "tipo": 0,
-      "subtipo": 2,
-      "inicio": 5.0,
-      "duracion": 10.0,
-      "grados": 0.0
+      "nombreObjeto": "house",
+      "transformaciones": [
+        {
+          "tipo": 2,
+          "inicio": 15000,
+          "duracion": 2000,
+          "valor": 60.0,
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "tipo": 0,
+          "inicio": 15000,
+          "duracion": 2000,
+          "valor": 20.0,
+          "x": 1,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "tipo": 2,
+          "inicio": 18000,
+          "duracion": 2000,
+          "valor": 60.0,
+          "x": 0,
+          "y": -1,
+          "z": 0
+        },
+        {
+          "tipo": 0,
+          "inicio": 18000,
+          "duracion": 2000,
+          "valor": 20.0,
+          "x": -1,
+          "y": 0,
+          "z": 0
+        }
+      ]
     },
     {
-      "tipo": 0,
-      "subtipo": 1,
-      "inicio": 10.0,
-      "duracion": 5.0,
-      "grados": 0.0
+      "nombreObjeto": "house",
+      "transformaciones": [
+        {
+          "tipo": 0,
+          "inicio": 22000,
+          "duracion": 1000,
+          "valor": 40.0,
+          "x": -1,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "tipo": 2,
+          "inicio": 22000,
+          "duracion": 5000,
+          "valor": 90.0,
+          "x": 1,
+          "y": 0,
+          "z": 0
+        }
+      ]
     },
     {
-      "tipo": 2,
-      "subtipo": 6,
-      "inicio": 1.0,
-      "duracion": 10.0,
-      "grados": 2.0
+      "nombreObjeto": "house",
+      "transformaciones": [
+        {
+          "tipo": 0,
+          "inicio": 30000,
+          "duracion": 10000,
+          "valor": 20.0,
+          "x": 1,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "tipo": 2,
+          "inicio": 30000,
+          "duracion": 5000,
+          "valor": 90.0,
+          "x": -1,
+          "y": 0,
+          "z": 0
+        }
+      ]
     },
     {
-      "tipo": 2,
-      "subtipo": 9,
-      "inicio": 1.0,
-      "duracion": 10.0,
-      "grados": 3.0
-    },
-    {
-      "tipo": 1,
-      "subtipo": 12,
-      "inicio": 5.0,
-      "duracion": 10.0,
-      "grados": 0.0
-    },
-    {
-      "tipo": 1,
-      "subtipo": 13,
-      "inicio": 10.0,
-      "duracion": 10.0,
-      "grados": 0.0
+      "nombreObjeto": "car",
+      "transformaciones": [
+        {
+          "tipo": 1,
+          "inicio": 7000,
+          "duracion": 2000,
+          "valor": 0.5,
+          "x": -1,
+          "y": -1,
+          "z": -1
+        },
+        {
+          "tipo": 1,
+          "inicio": 10000,
+          "duracion": 2000,
+          "valor": 0.5,
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        {
+          "tipo": 2,
+          "inicio": 15000,
+          "duracion": 4000,
+          "valor": 60.0,
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "tipo": 0,
+          "inicio": 15000,
+          "duracion": 4000,
+          "valor": 20.0,
+          "x": 1,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "tipo": 2,
+          "inicio": 20000,
+          "duracion": 2000,
+          "valor": 60.0,
+          "x": 0,
+          "y": -1,
+          "z": 0
+        },
+        {
+          "tipo": 0,
+          "inicio": 20000,
+          "duracion": 2000,
+          "valor": 20.0,
+          "x": -1,
+          "y": 0,
+          "z": 0
+        }
+      ]
     }
   ]
 }

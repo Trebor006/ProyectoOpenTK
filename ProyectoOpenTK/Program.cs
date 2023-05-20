@@ -14,25 +14,25 @@ namespace ProyectoOpenTK
 {
     internal class Program
     {
-        // [STAThread] // Atributo STAThread
-        public static void Main(string[] args)
-            // static void Main()
+        [STAThread] // Atributo STAThread
+        // public static void Main(string[] args)
+            static void Main()
         {
-            // Application.EnableVisualStyles();
-            // Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new MainForm());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
 
-            Libreto libreto = generarLibreto();
-            FileHelper.mapLibretoToJson(libreto);
+            // Libreto libreto = generarLibreto();
+            // FileHelper.mapLibretoToJson(libreto);
 
-            Game juego = new Game(800, 600, "Demo OpenTK");
-            // juego.stages = LoadFromJson();
-            juego.stages = LoadStage();
-            // // FileHelper.mapToJson(juego.stages);
-            //
-            ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
-            // Console.WriteLine("Juego Iniciado");
-            juego.Run(60);
+            // Game juego = new Game(800, 600, "Demo OpenTK");
+            // // juego.stages = LoadFromJson();
+            // juego.stages = LoadStage();
+            // // // FileHelper.mapToJson(juego.stages);
+            // //
+            // // ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
+            // // Console.WriteLine("Juego Iniciado");
+            // juego.Run(60);
         }
 
         public static Dictionary<string, Stage> LoadStage()
