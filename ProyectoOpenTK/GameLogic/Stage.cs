@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using OpenTK;
+using ProyectoOpenTK.GameLogic.Interfaces;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Stage : Drawable, Trasladable, Scalable, Rotable
+    public class Stage : IDrawable, ITrasladable, IScalable, IRotable
     {
         public Dictionary<string, GraphicObject> objects;
 

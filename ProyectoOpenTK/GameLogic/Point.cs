@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using OpenTK;
+﻿using OpenTK;
 
 namespace ProyectoOpenTK.GameLogic
 {

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
 using Newtonsoft.Json;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
-using ProyectoOpenTK.Utils;
-
+using ProyectoOpenTK.GameLogic.Interfaces;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class Part : Drawable
+    public class Part : IDrawable
     {
         [JsonIgnore] private int VAO;
         [JsonIgnore] private int VBO;

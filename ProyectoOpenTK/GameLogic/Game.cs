@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
-using OpenTK.Input;
 using KeyPressEventArgs = OpenTK.KeyPressEventArgs;
 
 namespace ProyectoOpenTK.GameLogic

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using OpenTK;
+using ProyectoOpenTK.GameLogic.Interfaces;
 
 namespace ProyectoOpenTK.GameLogic
 {
-    public class GraphicObject : Drawable, Trasladable, Scalable, Rotable
+    public class GraphicObject : IDrawable, ITrasladable, IScalable, IRotable
     {
         public Dictionary<string, Part> parts;
 

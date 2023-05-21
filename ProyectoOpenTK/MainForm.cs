@@ -1,30 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System;
-using System.Collections.Generic;
 using ProyectoOpenTK.GameLogic;
-using Newtonsoft.Json;
-using OpenTK;
 using ProyectoOpenTK.Utils;
-using System;
-using System.Windows.Forms;
 using System.IO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.IO.Pipes;
-using static System.Windows.Forms.AxHost;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using OpenTK.Input;
 using ProyectoOpenTK.AnimationLogic;
-
 
 namespace ProyectoOpenTK
 {
