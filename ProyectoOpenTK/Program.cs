@@ -14,25 +14,25 @@ namespace ProyectoOpenTK
 {
     internal class Program
     {
-        [STAThread] // Atributo STAThread
-        // public static void Main(string[] args)
-            static void Main()
+        // [STAThread] // Atributo STAThread
+        public static void Main(string[] args)
+            // static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            // Application.EnableVisualStyles();
+            // Application.SetCompatibleTextRenderingDefault(false);
+            // Application.Run(new MainForm());
 
-            // Libreto libreto = generarLibreto();
-            // FileHelper.mapLibretoToJson(libreto);
+            Libreto libreto = generarLibreto();
+            FileHelper.mapLibretoToJson(libreto);
 
-            // Game juego = new Game(800, 600, "Demo OpenTK");
-            // // juego.stages = LoadFromJson();
-            // juego.stages = LoadStage();
-            // // // FileHelper.mapToJson(juego.stages);
-            // //
-            // // ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
-            // // Console.WriteLine("Juego Iniciado");
-            // juego.Run(60);
+            Game juego = new Game(800, 600, "Demo OpenTK");
+            // juego.stages = LoadFromJson();
+            juego.stages = LoadStage();
+            // // FileHelper.mapToJson(juego.stages);
+            //
+            ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
+            // Console.WriteLine("Juego Iniciado");
+            juego.Run(60);
         }
 
         public static Dictionary<string, Stage> LoadStage()
@@ -95,7 +95,6 @@ namespace ProyectoOpenTK
                 -1.8f, -2f, 3f, // 15
                 -1.2f, -1f, 3f, // 16
                 -0.6f, -2.5f, 3f, // 17
-
                 0f, -2.5f, -3f, //18    0
                 0.6f, -2.5f, -3f, //19  1
                 1.2f, -2f, -3f, //20    2
@@ -124,17 +123,8 @@ namespace ProyectoOpenTK
             int[] indicesCarTecho = new[] { 10, 9, 27, 28 };
             int[] indicesCarParabrisasTrasero = new[] { 9, 8, 26, 27 };
             int[] indiceMaletero = new[] { 8, 7, 25, 26 };
-            //int[] indicePosterior = new[] { 7, 6, 24, 25 };
-            //int[] indiceInferior = new[] { 6, 13, 31, 24 };
             int[] indiceFrontal = new[] { 12, 13, 31, 30 };
 
-
-            //int[] indicesCarLateralIzq = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-            //int[] indicesCarLateralDer = new[]
-            //    { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
-            //int[] indicePosterior = new[] { 7, 6, 24, 25 };
-            //int[] indiceInferior = new[] { 6, 13, 31, 24 };
-            //int[] indiceFrontal = new[] { 12, 13, 31, 30 };
 
             int[] indiceChasis = new[]
             {
@@ -147,32 +137,17 @@ namespace ProyectoOpenTK
 
                 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 0,
                 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 18
-
-                //      7, 6, 24, 25 , 7 ,
-                //     6, 13, 31, 24 , 6,
-
-                //6, 13, 31, 24, 6
             };
 
 
             Dictionary<string, Part> carParts = new Dictionary<string, Part>();
-            //var carLateralIzq = new Part(verticesCar, indicesCarLateralIzq, Point.MapFrom(originCar));
-            //var carLateralDer = new Part(verticesCar, indicesCarLateralDer, Point.MapFrom(originCar));
             var caraCapot = new Part(verticesCar, indicesCarCapot, Point.MapFrom(originCar));
             var caraParabrisas = new Part(verticesCar, indicesCarParabrisas, Point.MapFrom(originCar));
             var caraTecho = new Part(verticesCar, indicesCarTecho, Point.MapFrom(originCar));
             var caraParabrisasTrasero =
                 new Part(verticesCar, indicesCarParabrisasTrasero, Point.MapFrom(originCar));
             var caraMaletero = new Part(verticesCar, indiceMaletero, Point.MapFrom(originCar));
-            //var caraPosterior = new Part(verticesCar, indicePosterior, Point.MapFrom(originCar));
-            //var caraInferior = new Part(verticesCar, indiceInferior, Point.MapFrom(originCar));
-            //var caraFrontal = new Part(verticesCar, indiceFrontal, Point.MapFrom(originCar));
             var chasis = new Part(verticesCar, indiceChasis, Point.MapFrom(originCar));
-            //carParts.Add("carLateralIzq", carLateralIzq);
-            //carParts.Add("carLateralDer", carLateralDer);
-            //carParts.Add("caraPosterior", caraPosterior);
-            //carParts.Add("caraInferior", caraInferior);
-            //carParts.Add("caraFrontal", caraFrontal);
 
             carParts.Add("chasis", chasis);
             carParts.Add("capot", caraCapot);
@@ -203,104 +178,29 @@ namespace ProyectoOpenTK
             List<Transformacion> transformacionesObjeto1 = new List<Transformacion>
             {
                 new Transformacion
-                    { tipo = TipoAccion.MOVER, valor = 10, inicio = 0, duracion = 3000, x = 1, y = 1, z = 0 },
-
-                new Transformacion
-                    { tipo = TipoAccion.MOVER, valor = 10, inicio = 3000, duracion = 3000, x = 0, y = -1, z = 0 },
+                    { tipo = TipoAccion.ROTAR, valor = 90, inicio = 2000, duracion = 3000, x = 1, y = 0, z = 0 },
             };
+
             Accion accion1 = new Accion("house", transformacionesObjeto1);
+            Accion accion2 = new Accion("car", transformacionesObjeto1);
 
-            Accion accion2 = new Accion
-            {
-                nombreObjeto = "house",
-                transformaciones = new List<Transformacion>
-                {
-                    new Transformacion
-                    {
-                        tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 7000, duracion = 2000, x = -1, y = -1, z = -1
-                    },
-                    new Transformacion
-                    {
-                        tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 10000, duracion = 2000, x = 1, y = 1, z = 1
-                    },
-                    new Transformacion
-                        { tipo = TipoAccion.MOVER, valor = 10, inicio = 0, duracion = 3000, x = 1, y = 1, z = 0 },
-
-                    new Transformacion
-                        { tipo = TipoAccion.MOVER, valor = 10, inicio = 3000, duracion = 3000, x = 0, y = -1, z = 0 },
-                    
-                    
-                }
-            };
-            
-            Accion accion1Car = new Accion
+            Accion accion3 = new Accion
             {
                 nombreObjeto = "car",
                 transformaciones = new List<Transformacion>
                 {
                     new Transformacion
-                    {
-                        tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 7000, duracion = 2000, x = -1, y = -1, z = -1
-                    },
-                    new Transformacion
-                    {
-                        tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 10000, duracion = 2000, x = 1, y = 1, z = 1
-                    },
-                    new Transformacion
-                        { tipo = TipoAccion.ROTAR, valor = 60f, inicio = 15000, duracion = 4000, x = 0, y = 1, z = 0 },
-                    new Transformacion
-                        { tipo = TipoAccion.MOVER, valor = 20f, inicio = 15000, duracion = 4000, x = 1, y = 0, z = 0 },
-                    
-                    new Transformacion
-                        { tipo = TipoAccion.ROTAR, valor = 60f, inicio = 20000, duracion = 2000, x = 0, y = -1, z = 0 },
-                    new Transformacion
-                        { tipo = TipoAccion.MOVER, valor = 20f, inicio = 20000, duracion = 2000, x = -1, y = 0, z = 0 }
-                }
-            };
-
-            Accion accion3 = new Accion
-            {
-                nombreObjeto = "house",
-                transformaciones = new List<Transformacion>
-                {
-                    new Transformacion
-                        { tipo = TipoAccion.ROTAR, valor = 60f, inicio = 15000, duracion = 2000, x = 0, y = 1, z = 0 },
-                    new Transformacion
-                        { tipo = TipoAccion.MOVER, valor = 20f, inicio = 15000, duracion = 2000, x = 1, y = 0, z = 0 },
-                    
-                    new Transformacion
-                        { tipo = TipoAccion.ROTAR, valor = 60f, inicio = 18000, duracion = 2000, x = 0, y = -1, z = 0 },
-                    new Transformacion
-                        { tipo = TipoAccion.MOVER, valor = 20f, inicio = 18000, duracion = 2000, x = -1, y = 0, z = 0 }
-                }
-            };
-
-            Accion accion4 = new Accion
-            {
-                nombreObjeto = "house",
-                transformaciones = new List<Transformacion>
-                {
-                    new Transformacion { tipo = TipoAccion.MOVER, valor = 40, inicio = 22000, duracion = 1000, x = -1, y = 0, z = 0 },
-                    new Transformacion { tipo = TipoAccion.ROTAR, valor = 90, inicio = 22000, duracion = 5000, x = 1, y = 0, z = 0 }
-                }
-            };
-            
-            Accion accion5 = new Accion
-            {
-                nombreObjeto = "house",
-                transformaciones = new List<Transformacion>
-                {
-                    new Transformacion { tipo = TipoAccion.MOVER, valor = 20, inicio = 30000, duracion = 10000, x = 1, y = 0, z = 0 },
-                    new Transformacion { tipo = TipoAccion.ROTAR, valor = 90, inicio = 30000, duracion = 5000, x = -1, y = 0, z = 0 }
+                        { tipo = TipoAccion.ROTAR, valor = 90, inicio = 0, duracion = 1000, x = 0, y = 1, z = 0 },
+                    // new Transformacion { tipo = TipoAccion.ROTAR, valor = 90, inicio = 30000, duracion = 5000, x = -1, y = 0, z = 0 }
                 }
             };
 
             acciones.Add(accion1);
             acciones.Add(accion2);
             acciones.Add(accion3);
-            acciones.Add(accion4);
-            acciones.Add(accion5);
-            acciones.Add(accion1Car);
+            // acciones.Add(accion4);
+            // acciones.Add(accion5);
+            // acciones.Add(accion1Car);
 
             Libreto libreto = new Libreto();
             libreto.acciones = acciones;

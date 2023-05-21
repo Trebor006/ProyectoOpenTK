@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using OpenTK;
 using ProyectoOpenTK.GameLogic;
-using ProyectoOpenTK.Utils;
 
 namespace ProyectoOpenTK.AnimationLogic
 {
@@ -29,15 +26,13 @@ namespace ProyectoOpenTK.AnimationLogic
                     {
                         await Task.Delay(TimeSpan.FromMilliseconds(transformacion.inicio));
 
-                        DateTime tiempoFin = DateTime.Now.AddMilliseconds(transformacion.duracion);
-
-                        accionar(objects[accion.nombreObjeto], tiempoFin, transformacion);
+                        accionar(objects[accion.nombreObjeto], transformacion);
                     })));
 
             await Task.WhenAll(tasks);
         }
 
-        private void accionar(GraphicObject objeto, DateTime tiempoFin, Transformacion transformacion)
+        private void accionar(GraphicObject objeto, Transformacion transformacion)
         {
             double fpsObjetivo = 60.0;
             double fps = DisplayDevice.Default.RefreshRate;
@@ -47,6 +42,8 @@ namespace ProyectoOpenTK.AnimationLogic
             double velocity = (distancia / tiempo) * factorCompensacion;
 
             DateTime tiempoActual = DateTime.Now;
+            // var tiempoActual = Environment.TickCount;
+            DateTime tiempoFin = DateTime.Now.AddMilliseconds(transformacion.duracion);
 
             Console.WriteLine("velocity " + velocity);
 

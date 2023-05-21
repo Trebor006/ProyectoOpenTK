@@ -35,6 +35,11 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnLoad(EventArgs e)
         {
+            // Color backgroundColor = Color.FromArgb(255, 65, 87, 63);
+            // GL.ClearColor(backgroundColor);
+
+            // int orthoSize = 5;
+            // GL.Ortho(-orthoSize, orthoSize, -orthoSize, orthoSize, -orthoSize, orthoSize);
             base.OnLoad(e);
         }
 
