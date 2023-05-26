@@ -26,12 +26,12 @@ namespace ProyectoOpenTK.Utils
             }
         }
 
-        public static Dictionary<string, Stage> loadFromJsonString(string jsonString)
+        public static Stage loadFromJsonString(string jsonString)
         {
             try
             {
-                Dictionary<string, Stage> stages = JsonConvert.DeserializeObject<Dictionary<string, Stage>>(jsonString);
-                return stages;
+                Stage stage = JsonConvert.DeserializeObject<Stage>(jsonString);
+                return stage;
             }
             catch (Exception e)
             {
@@ -54,11 +54,11 @@ namespace ProyectoOpenTK.Utils
             }
         }
 
-        public static string mapToJson(Dictionary<string, Stage> stages)
+        public static string mapToJson(Stage stage)
         {
             try
             {
-                string jsonString = JsonConvert.SerializeObject(stages, Formatting.Indented);
+                string jsonString = JsonConvert.SerializeObject(stage, Formatting.Indented);
                 string directoryPath = "./Resources/";
                 string finalPath = Path.Combine(directoryPath, "archivito.json");
 

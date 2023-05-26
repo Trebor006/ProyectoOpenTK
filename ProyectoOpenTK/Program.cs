@@ -26,16 +26,16 @@ namespace ProyectoOpenTK
             FileHelper.mapLibretoToJson(libreto);
 
             Game juego = new Game(800, 600, "Demo OpenTK");
-            // juego.stages = LoadFromJson();
-            juego.stages = LoadStage();
-            // // FileHelper.mapToJson(juego.stages);
+            // juego.stage = LoadFromJson();
+            juego.stage = LoadStage();
+            FileHelper.mapToJson(juego.stage);
             //
             ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
             // Console.WriteLine("Juego Iniciado");
             juego.Run(60);
         }
 
-        public static Dictionary<string, Stage> LoadStage()
+        public static Stage LoadStage()
         {
             var originStage = Vector3.Zero;
             var originParedes = Vector3.Zero;
@@ -114,17 +114,12 @@ namespace ProyectoOpenTK
                 -1.2f, -1f, -3f, // 34  16
                 -0.6f, -2.5f, -3f, // 35    17
             };
-            // int[] indicesCarLateralIzq = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-            //int[] indicesCarLateralDer = new[]
-            //     { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
 
             int[] indicesCarCapot = new[] { 12, 11, 29, 30 };
             int[] indicesCarParabrisas = new[] { 11, 10, 28, 29 };
             int[] indicesCarTecho = new[] { 10, 9, 27, 28 };
             int[] indicesCarParabrisasTrasero = new[] { 9, 8, 26, 27 };
             int[] indiceMaletero = new[] { 8, 7, 25, 26 };
-            int[] indiceFrontal = new[] { 12, 13, 31, 30 };
-
 
             int[] indiceChasis = new[]
             {
@@ -161,13 +156,7 @@ namespace ProyectoOpenTK
             houseAndCar.AddObject("house", houseObject);
             houseAndCar.AddObject("car", carObject);
 
-            // stage.AddObject("car", graphicObject);
-
-            Dictionary<string, Stage> stages = new Dictionary<string, Stage>();
-
-            stages.Add("HouseAndCar", houseAndCar);
-
-            return stages;
+            return houseAndCar;
         }
 
 

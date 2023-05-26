@@ -10,7 +10,7 @@ namespace ProyectoOpenTK.GameLogic
 {
     public class Game : GameWindow
     {
-        public Dictionary<string, Stage> stages { get; set; }
+        public Stage stage { get; set; }
 
         public float increaseValue { get; set; }
         public float movementValue { get; set; }
@@ -19,7 +19,7 @@ namespace ProyectoOpenTK.GameLogic
 
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
-            this.stages = new Dictionary<string, Stage>();
+            this.stage = new Stage();
             this.increaseValue = 0.1f;
             this.movementValue = 0.1f;
             this.degreesValue = 1;
@@ -62,11 +62,7 @@ namespace ProyectoOpenTK.GameLogic
 
 
             //-----------------------
-
-            foreach (var stages in stages)
-            {
-                stages.Value.Draw();
-            }
+            stage.Draw();
 
             //-----------------------
             dibujarRejilla();
@@ -112,11 +108,6 @@ namespace ProyectoOpenTK.GameLogic
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadIdentity();
             base.OnResize(e);
-        }
-
-        public void AddStage(string name, Stage stage)
-        {
-            this.stages.Add(name, stage);
         }
 
         protected override void OnKeyPress(KeyPressEventArgs e)
@@ -197,44 +188,25 @@ namespace ProyectoOpenTK.GameLogic
 
         public void moveTo(float x, float y, float z)
         {
-            foreach (var stages in stages)
-            {
-                stages.Value.moveTo(x, y, z);
-            }
+            Console.WriteLine("moveTo");
+            stage.moveTo(x, y, z);
         }
 
         public void rotate(float angle, float x, float y, float z)
         {
             Console.WriteLine("rotate");
-            foreach (var stages in stages)
-            {
-                stages.Value.rotate(angle, x, y, z);
-            }
+            stage.rotate(angle, x, y, z);
         }
 
         public void resize(float x, float y, float z)
         {
             Console.WriteLine("resize");
-
-            foreach (var stages in stages)
-            {
-                stages.Value.resize(x, y, z);
-            }
+            stage.resize(x, y, z);
         }
 
         public Dictionary<string, GraphicObject> generateObjectsDetailFromStages()
         {
-            Dictionary<string, GraphicObject> allObjects = new Dictionary<string, GraphicObject>();
-
-            foreach (var stage in stages.Values)
-            {
-                foreach (KeyValuePair<string, GraphicObject> obj in stage.objects)
-                {
-                    allObjects[obj.Key] = obj.Value;
-                }
-            }
-
-            return allObjects;
+            return stage.objects;
         }
     }
 }

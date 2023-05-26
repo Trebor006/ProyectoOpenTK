@@ -19,7 +19,7 @@ namespace ProyectoOpenTK.GameLogic
 
         public Point origin { get; set; }
         public Point position { get; set; }
-        public Matrix4 modelMatrix { get; private set; }
+        [JsonIgnore] public Matrix4 modelMatrix { get; private set; }
 
         public Part(float[] vertices, int[] indices, Point origin)
         {
