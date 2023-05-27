@@ -23,12 +23,12 @@ namespace ProyectoOpenTK
             // Application.Run(new MainForm());
 
             Libreto libreto = generarLibreto();
-            FileHelper.mapLibretoToJson(libreto);
+            // FileHelper.mapLibretoToJson(libreto);
 
             Game juego = new Game(800, 600, "Demo OpenTK");
             // juego.stage = LoadFromJson();
             juego.stage = LoadStage();
-            FileHelper.mapToJson(juego.stage);
+            // FileHelper.mapToJson(juego.stage);
             //
             ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
             // Console.WriteLine("Juego Iniciado");
@@ -44,24 +44,22 @@ namespace ProyectoOpenTK
 
             var vertices = new float[]
             {
-                5f, 5f, 5f, //0
-                5f, -5f, 5f, //1
-                -5f, -5f, 5f, //2
-                -5f, 5f, 5f, //3
-
-                5f, 5f, -5f, //4
-                5f, -5f, -5f, //5
-                -5f, -5f, -5f, //6
-                -5f, 5f, -5f, //7
-
-                0f, 5f, 5f, //8
-                0f, 5f, -5f, //9
-                0f, 5f, -5f, //10
+              - 10 +  5f, 5f, 5f, //0
+              - 10 +  5f, -5f, 5f, //1
+              - 10 +  -5f, -5f, 5f, //2
+              - 10 +  -5f, 5f, 5f, //3
+              - 10 +  5f, 5f, -5f, //4
+              - 10 +  5f, -5f, -5f, //5
+              - 10 +  -5f, -5f, -5f, //6
+              - 10 +  -5f, 5f, -5f, //7
+              - 10 +  0f, 10f, 5f, //8
+              - 10 +  0f, 10f, -5f, //9
+              - 10 +  0f, 10f, -5f, //10
             };
 
             int[] indicesParedes = new[]
                 { 0, 1, 2, 3, 0, 4, 5, 6, 7, 4, 5, 1, 0, 1, 2, 6, 5, 6, 2, 3, 7, 6, 5, 1, 0, 3, 7, 4 };
-            int[] indicesTecho = new[] { 2, 1, 8, 2, 6, 9, 8, 2, 1, 5, 6, 5, 1, 2, 8, 10, 5, 1 };
+            int[] indicesTecho = new[] { 3, 0, 8, 3, 7, 9, 8, 3, 0, 4, 7, 4, 0, 3, 8, 10, 4, 0 };
 
             var paredes = new Part(vertices, indicesParedes, Point.MapFrom(originParedes));
             var techo = new Part(vertices, indicesTecho, Point.MapFrom(originTecho));
@@ -151,7 +149,7 @@ namespace ProyectoOpenTK
             carParts.Add("parabrisasTrasero", caraParabrisasTrasero);
             carParts.Add("maletero", caraMaletero);
 
-            var carObject = new GraphicObject(Point.MapFrom(originStage), Point.MapFrom(Vector3.Zero), carParts);
+            var carObject = new GraphicObject(Point.MapFrom(originStage), Point.MapFrom(originCar), carParts);
 
             houseAndCar.AddObject("house", houseObject);
             houseAndCar.AddObject("car", carObject);
@@ -167,15 +165,76 @@ namespace ProyectoOpenTK
             List<Transformacion> transformacionesObjeto1 = new List<Transformacion>
             {
                 new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 90, inicio = 2000, duracion = 3000, x = 1, y = 0, z = 0 },
+                    { tipo = TipoAccion.ROTAR, valor = 90, inicio = 0, duracion = 1000, x = 0, y = 1, z = 0 },
+
+                // Luego, nos achicamos para simular que nos alejamos
+                new Transformacion
+                {
+                    tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 1100, duracion = 5000, x = -1, y = -1, z = -1
+                }, //3Seg
+                new Transformacion
+                {
+                    tipo = TipoAccion.MOVER, valor = 25, inicio = 1000, duracion = 5000, x = 0, y = 1, z = 0
+                }, //1 - 5
+
+                // Giramos para comenzar a moverse alrededor de la montaña
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 90, inicio = 6000, duracion = 500, x = 0, y = -1, z = 0 }, //
+                new Transformacion
+                    { tipo = TipoAccion.MOVER, valor = 5, inicio = 6500, duracion = 1000, x = -1, y = 0, z = 0 },
+
+                // Nos movemos a la izquierda por el camino sinuoso
+                new Transformacion
+                    { tipo = TipoAccion.MOVER, valor = 15, inicio = 8000, duracion = 10000, x = -1, y = 0, z = 0 },
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 9000, duracion = 2000, x = 1, y = 0, z = 0 },
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 10000, duracion = 2000, x = -1, y = 0, z = 0 },
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 12000, duracion = 2000, x = 1, y = 0, z = 0 },
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 13000, duracion = 2000, x = -1, y = 0, z = 0 },
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 2, inicio = 7000, duracion = 500, x = 1, y = 0, z = 1 },
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 2, inicio = 10000, duracion = 500, x = -1, y = 0, z = -1 },
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 2, inicio = 12000, duracion = 500, x = 1, y = 0, z = -1 },
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 2, inicio = 14000, duracion = 500, x = -1, y = 0, z = 1 },
+                
+                
+                // // Giramos de nuevo para avanzar hacia la montaña
+                new Transformacion
+                { tipo = TipoAccion.ROTAR, valor = 90, inicio = 18000, duracion = 500, x = 0, y = 1, z = 0 }, //
+                //
+                // // Nos agrandamos para simular que nos acercamos
+                // new Transformacion
+                // { tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 18500, duracion = 5000, x = 1, y = 1, z = 1 },
+                new Transformacion
+                    { tipo = TipoAccion.MOVER, valor = 20, inicio = 18500, duracion = 5000, x = 0, y = -1, z = 0 },
+
+                //
+                // // Finalmente, nos movemos hacia la derecha para volver al punto de partida
+               
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 23500, duracion = 3000, x = 0, y = 1, z = 0 }, //
+                new Transformacion
+                { tipo = TipoAccion.MOVER, valor = 35, inicio = 24000, duracion = 5000, x = 1, y = 0, z = 0 },
+                
+                new Transformacion
+                    { tipo = TipoAccion.ROTAR, valor = 60, inicio = 27000, duracion = 500, x = 0, y = 1, z = 0 }, //
+
+                new Transformacion
+                { tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 24000, duracion = 3000, x = 1, y = 1, z = 1 },
+
             };
 
-            Accion accion1 = new Accion("house", transformacionesObjeto1);
-            Accion accion2 = new Accion("car", transformacionesObjeto1);
+            Accion accion1 = new Accion("car", transformacionesObjeto1);
 
-            Accion accion3 = new Accion
+            Accion accion2 = new Accion
             {
-                nombreObjeto = "car",
+                nombreObjeto = "bird",
                 transformaciones = new List<Transformacion>
                 {
                     new Transformacion
@@ -185,8 +244,8 @@ namespace ProyectoOpenTK
             };
 
             acciones.Add(accion1);
-            acciones.Add(accion2);
-            acciones.Add(accion3);
+            // acciones.Add(accion2);
+            // acciones.Add(accion3);
             // acciones.Add(accion4);
             // acciones.Add(accion5);
             // acciones.Add(accion1Car);

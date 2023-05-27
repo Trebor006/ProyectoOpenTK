@@ -45,7 +45,7 @@ namespace ProyectoOpenTK.AnimationLogic
             // var tiempoActual = Environment.TickCount;
             DateTime tiempoFin = DateTime.Now.AddMilliseconds(transformacion.duracion);
 
-            Console.WriteLine("velocity " + velocity);
+            // Console.WriteLine("velocity " + velocity);
 
             while (DateTime.Now <= tiempoFin)
             {
@@ -53,7 +53,7 @@ namespace ProyectoOpenTK.AnimationLogic
                 tiempoActual = DateTime.Now;
 
                 double deltaTime = (tiempoActual - tiempoAnterior).TotalSeconds;
-                Console.WriteLine("Delta " + deltaTime);
+                // Console.WriteLine("Delta " + deltaTime);
 
                 if (transformacion.tipo == TipoAccion.MOVER)
                 {

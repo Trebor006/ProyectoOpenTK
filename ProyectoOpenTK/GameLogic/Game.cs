@@ -54,8 +54,6 @@ namespace ProyectoOpenTK.GameLogic
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            base.OnRenderFrame(e);
-
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             // GL.Enable(EnableCap.DepthTest);
             // GL.LoadIdentity();
@@ -65,9 +63,11 @@ namespace ProyectoOpenTK.GameLogic
             stage.Draw();
 
             //-----------------------
-            dibujarRejilla();
+            // dibujarRejilla();
 
-            Context.SwapBuffers();
+            SwapBuffers();
+
+            base.OnRenderFrame(e);
         }
 
         private void dibujarRejilla()
