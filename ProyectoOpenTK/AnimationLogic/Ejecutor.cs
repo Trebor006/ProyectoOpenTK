@@ -90,5 +90,68 @@ namespace ProyectoOpenTK.AnimationLogic
                 }
             }
         }
+        
+        private void accionar2(GraphicObject objeto, Transformacion transformacion)
+        {
+            double fpsObjetivo = 60.0;
+            double fps = DisplayDevice.Default.RefreshRate;
+            double factorCompensacion = fpsObjetivo / fps;
+            double distancia = transformacion.valor; /* valor de la distancia en píxeles */
+            double tiempo = transformacion.duracion / 1000.0; // Convertir a segundos
+            double velocity = (distancia / tiempo) * factorCompensacion;
+
+            // DateTime tiempoActual = DateTime.Now;
+            long tiempoActual = Environment.TickCount & Int32.MaxValue;
+            // DateTime tiempoFin = DateTime.Now.AddMilliseconds(transformacion.duracion);
+
+            long tiempoFin = tiempoActual + transformacion.duracion;
+            
+            // Console.WriteLine("velocity " + velocity);
+
+            while (tiempoActual <= tiempoFin)
+            {
+                long tiempoAnterior = tiempoActual;
+                tiempoActual = Environment.TickCount & Int32.MaxValue;
+
+                // double deltaTime = (tiempoActual - tiempoAnterior).TotalSeconds;
+                double deltaTime = TimeSpan.FromMilliseconds(tiempoActual - tiempoAnterior).TotalSeconds;
+
+                // Console.WriteLine("Delta " + deltaTime);
+
+                if (transformacion.tipo == TipoAccion.MOVER)
+                {
+                    objeto.moveTo(
+                        (float)(velocity * transformacion.x * deltaTime),
+                        (float)(velocity * transformacion.y * deltaTime),
+                        (float)(velocity * transformacion.z * deltaTime)
+                    );
+                }
+                else if (transformacion.tipo == TipoAccion.ROTAR)
+                {
+                    objeto.rotate(
+                        (float)((float)velocity * deltaTime),
+                        (float)(transformacion.x),
+                        (float)(transformacion.y),
+                        (float)(transformacion.z)
+                    );
+                }
+                else if (transformacion.tipo == TipoAccion.ESCALAR)
+                {
+                    float scaleFactorX = 1 + (float)(transformacion.x * deltaTime / tiempo);
+                    float scaleFactorY = 1 + (float)(transformacion.y * deltaTime / tiempo);
+                    float scaleFactorZ = 1 + (float)(transformacion.z * deltaTime / tiempo);
+
+                    if (scaleFactorX < 0) scaleFactorX = 0.01f;
+                    if (scaleFactorY < 0) scaleFactorY = 0.01f;
+                    if (scaleFactorZ < 0) scaleFactorZ = 0.01f;
+
+                    objeto.resize(
+                        scaleFactorX,
+                        scaleFactorY,
+                        scaleFactorZ
+                    );
+                }
+            }
+        }
     }
 }
