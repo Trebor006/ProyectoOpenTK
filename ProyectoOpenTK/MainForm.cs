@@ -67,6 +67,10 @@ namespace ProyectoOpenTK
             juego.stage.objects["bird"].rotate(-50,-1, 0, 0);
             juego.stage.objects["bird"].rotate(90,0, 0, -1);
             juego.stage.objects["bird"].moveTo(-10, 10, 0);
+            
+            juego.stage.objects["car"].rotate(90,0, 1,0 );
+            juego.stage.objects["car"].moveTo(5, 0, 0);
+
             juego.moveTo(7, 0 , 0);
             generateCheckBoxes(juego.stage);
 

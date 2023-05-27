@@ -14,35 +14,35 @@ namespace ProyectoOpenTK
 {
     internal class Program
     {
-        // [STAThread] // Atributo STAThread
-        public static void Main(string[] args)
-            // static void Main()
+        [STAThread] // Atributo STAThread
+        // public static void Main(string[] args)
+            static void Main()
         {
-            // Application.EnableVisualStyles();
-            // Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new MainForm());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
 
-            Libreto libreto = generarLibreto();
-            FileHelper.mapLibretoToJson(libreto);
-            
-            Game juego = new Game(800, 600, "Demo OpenTK");
-            // juego.stage = LoadFromJson();
-            juego.stage = LoadStage();
-            juego.moveTo(5, 0, 0);
-            
-            juego.stage.objects["bird"].resize(-0.05f, -0.05f, -0.05f);
-            juego.stage.objects["bird"].rotate(-50,-1, 0, 0);
-            juego.stage.objects["bird"].rotate(90,0, 0, -1);
-            juego.stage.objects["bird"].moveTo(-5, 10, 0);
-            
-            juego.stage.objects["car"].rotate(90,0, 1,0 );
-            juego.stage.objects["car"].moveTo(5, 0, 0);
-
-            FileHelper.mapToJson(juego.stage);
+            // Libreto libreto = generarLibreto();
+            // FileHelper.mapLibretoToJson(libreto);
             //
-            ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
-            // Console.WriteLine("Juego Iniciado");
-            juego.Run(60);
+            // Game juego = new Game(800, 600, "Demo OpenTK");
+            // // juego.stage = LoadFromJson();
+            // juego.stage = LoadStage();
+            // juego.moveTo(5, 0, 0);
+            //
+            // juego.stage.objects["bird"].resize(-0.05f, -0.05f, -0.05f);
+            // juego.stage.objects["bird"].rotate(-50,-1, 0, 0);
+            // juego.stage.objects["bird"].rotate(90,0, 0, -1);
+            // juego.stage.objects["bird"].moveTo(-5, 10, 0);
+            //
+            // juego.stage.objects["car"].rotate(90,0, 1,0 );
+            // juego.stage.objects["car"].moveTo(5, 0, 0);
+            //
+            // FileHelper.mapToJson(juego.stage);
+            // //
+            // ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
+            // // Console.WriteLine("Juego Iniciado");
+            // juego.Run(60);
         }
 
         public static Stage LoadStage()

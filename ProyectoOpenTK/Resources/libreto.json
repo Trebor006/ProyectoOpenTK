@@ -36,7 +36,7 @@
           "duracion": 500,
           "valor": 90.0,
           "x": 0,
-          "y": -1,
+          "y": 1,
           "z": 0
         },
         {
@@ -59,83 +59,11 @@
         },
         {
           "tipo": 2,
-          "inicio": 9000,
-          "duracion": 2000,
-          "valor": 30.0,
-          "x": 1,
-          "y": 0,
-          "z": 0
-        },
-        {
-          "tipo": 2,
-          "inicio": 10000,
-          "duracion": 2000,
-          "valor": 30.0,
-          "x": -1,
-          "y": 0,
-          "z": 0
-        },
-        {
-          "tipo": 2,
-          "inicio": 12000,
-          "duracion": 2000,
-          "valor": 30.0,
-          "x": 1,
-          "y": 0,
-          "z": 0
-        },
-        {
-          "tipo": 2,
-          "inicio": 13000,
-          "duracion": 2000,
-          "valor": 30.0,
-          "x": -1,
-          "y": 0,
-          "z": 0
-        },
-        {
-          "tipo": 2,
-          "inicio": 7000,
-          "duracion": 500,
-          "valor": 2.0,
-          "x": 1,
-          "y": 0,
-          "z": 1
-        },
-        {
-          "tipo": 2,
-          "inicio": 10000,
-          "duracion": 500,
-          "valor": 2.0,
-          "x": -1,
-          "y": 0,
-          "z": -1
-        },
-        {
-          "tipo": 2,
-          "inicio": 12000,
-          "duracion": 500,
-          "valor": 2.0,
-          "x": 1,
-          "y": 0,
-          "z": -1
-        },
-        {
-          "tipo": 2,
-          "inicio": 14000,
-          "duracion": 500,
-          "valor": 2.0,
-          "x": -1,
-          "y": 0,
-          "z": 1
-        },
-        {
-          "tipo": 2,
           "inicio": 18000,
           "duracion": 500,
           "valor": 90.0,
           "x": 0,
-          "y": 1,
+          "y": -1,
           "z": 0
         },
         {
@@ -153,7 +81,7 @@
           "duracion": 3000,
           "valor": 30.0,
           "x": 0,
-          "y": 1,
+          "y": -1,
           "z": 0
         },
         {
@@ -171,13 +99,13 @@
           "duracion": 500,
           "valor": 60.0,
           "x": 0,
-          "y": 1,
+          "y": -1,
           "z": 0
         },
         {
           "tipo": 1,
           "inicio": 24000,
-          "duracion": 3000,
+          "duracion": 5000,
           "valor": 0.5,
           "x": 1,
           "y": 1,
