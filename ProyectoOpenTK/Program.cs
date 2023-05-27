@@ -14,32 +14,35 @@ namespace ProyectoOpenTK
 {
     internal class Program
     {
-        [STAThread] // Atributo STAThread
-        // public static void Main(string[] args)
-            static void Main()
+        // [STAThread] // Atributo STAThread
+        public static void Main(string[] args)
+            // static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            // Application.EnableVisualStyles();
+            // Application.SetCompatibleTextRenderingDefault(false);
+            // Application.Run(new MainForm());
 
-            // Libreto libreto = generarLibreto();
-            // FileHelper.mapLibretoToJson(libreto);
+            Libreto libreto = generarLibreto();
+            FileHelper.mapLibretoToJson(libreto);
+            
+            Game juego = new Game(800, 600, "Demo OpenTK");
+            // juego.stage = LoadFromJson();
+            juego.stage = LoadStage();
+            juego.moveTo(5, 0, 0);
+            
+            juego.stage.objects["bird"].resize(-0.05f, -0.05f, -0.05f);
+            juego.stage.objects["bird"].rotate(-50,-1, 0, 0);
+            juego.stage.objects["bird"].rotate(90,0, 0, -1);
+            juego.stage.objects["bird"].moveTo(-5, 10, 0);
+            
+            juego.stage.objects["car"].rotate(90,0, 1,0 );
+            juego.stage.objects["car"].moveTo(5, 0, 0);
+
+            FileHelper.mapToJson(juego.stage);
             //
-            // Game juego = new Game(800, 600, "Demo OpenTK");
-            // // juego.stage = LoadFromJson();
-            // juego.stage = LoadStage();
-            // juego.moveTo(5, 0, 0);
-            //
-            // juego.stage.objects["bird"].resize(-0.05f, -0.05f, -0.05f);
-            // juego.stage.objects["bird"].rotate(-50,-1, 0, 0);
-            // juego.stage.objects["bird"].rotate(90,0, 0, -1);
-            // juego.stage.objects["bird"].moveTo(-5, 10, 0);
-            //
-            // FileHelper.mapToJson(juego.stage);
-            // //
-            // ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
-            // // Console.WriteLine("Juego Iniciado");
-            // juego.Run(60);
+            ejecutarLibretoAutomaticamente(juego.generateObjectsDetailFromStages(), libreto);
+            // Console.WriteLine("Juego Iniciado");
+            juego.Run(60);
         }
 
         public static Stage LoadStage()
@@ -142,20 +145,22 @@ namespace ProyectoOpenTK
 
 
             Dictionary<string, Part> carParts = new Dictionary<string, Part>();
-            var caraCapot = new Part(verticesCar, indicesCarCapot, Point.MapFrom(originCar));
-            var caraParabrisas = new Part(verticesCar, indicesCarParabrisas, Point.MapFrom(originCar));
-            var caraTecho = new Part(verticesCar, indicesCarTecho, Point.MapFrom(originCar));
-            var caraParabrisasTrasero =
-                new Part(verticesCar, indicesCarParabrisasTrasero, Point.MapFrom(originCar));
-            var caraMaletero = new Part(verticesCar, indiceMaletero, Point.MapFrom(originCar));
-            var chasis = new Part(verticesCar, indiceChasis, Point.MapFrom(originCar));
+            // var caraCapot = new Part(verticesCar, indicesCarCapot, Point.MapFrom(originCar));
+            // var caraParabrisas = new Part(verticesCar, indicesCarParabrisas, Point.MapFrom(originCar));
+            // var caraTecho = new Part(verticesCar, indicesCarTecho, Point.MapFrom(originCar));
+            // var caraParabrisasTrasero =
+            //     new Part(verticesCar, indicesCarParabrisasTrasero, Point.MapFrom(originCar));
+            // var caraMaletero = new Part(verticesCar, indiceMaletero, Point.MapFrom(originCar));
+            // var chasis = new Part(verticesCar, indiceChasis, Point.MapFrom(originCar));
 
-            carParts.Add("chasis", chasis);
-            carParts.Add("capot", caraCapot);
-            carParts.Add("parabrisas", caraParabrisas);
-            carParts.Add("techo", caraTecho);
-            carParts.Add("parabrisasTrasero", caraParabrisasTrasero);
-            carParts.Add("maletero", caraMaletero);
+            // carParts.Add("chasis", chasis);
+            // carParts.Add("capot", caraCapot);
+            // carParts.Add("parabrisas", caraParabrisas);
+            // carParts.Add("techo", caraTecho);
+            // carParts.Add("parabrisasTrasero", caraParabrisasTrasero);
+            // carParts.Add("maletero", caraMaletero);
+            carParts.Add("car", FileHelper.LoadFileObj("car.obj"));
+            
 
             var carObject = new GraphicObject(Point.MapFrom(originStage), Point.MapFrom(originCar), carParts);
 
@@ -192,34 +197,34 @@ namespace ProyectoOpenTK
 
                 // Giramos para comenzar a moverse alrededor de la montaña
                 new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 90, inicio = 6000, duracion = 500, x = 0, y = -1, z = 0 }, //
+                    { tipo = TipoAccion.ROTAR, valor = 90, inicio = 6000, duracion = 500, x = 0, y = 1, z = 0 }, //
                 new Transformacion
                     { tipo = TipoAccion.MOVER, valor = 5, inicio = 6500, duracion = 1000, x = -1, y = 0, z = 0 },
 
                 // Nos movemos a la izquierda por el camino sinuoso
                 new Transformacion
                     { tipo = TipoAccion.MOVER, valor = 15, inicio = 8000, duracion = 10000, x = -1, y = 0, z = 0 },
-                new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 9000, duracion = 2000, x = 1, y = 0, z = 0 },
-                new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 10000, duracion = 2000, x = -1, y = 0, z = 0 },
-                new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 12000, duracion = 2000, x = 1, y = 0, z = 0 },
-                new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 13000, duracion = 2000, x = -1, y = 0, z = 0 },
-                new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 2, inicio = 7000, duracion = 500, x = 1, y = 0, z = 1 },
-                new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 2, inicio = 10000, duracion = 500, x = -1, y = 0, z = -1 },
-                new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 2, inicio = 12000, duracion = 500, x = 1, y = 0, z = -1 },
-                new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 2, inicio = 14000, duracion = 500, x = -1, y = 0, z = 1 },
+                // new Transformacion
+                //     { tipo = TipoAccion.ROTAR, valor = 30, inicio = 9000, duracion = 2000, x = 1, y = 0, z = 0 },
+                // new Transformacion
+                //     { tipo = TipoAccion.ROTAR, valor = 30, inicio = 10000, duracion = 2000, x = -1, y = 0, z = 0 },
+                // new Transformacion
+                //     { tipo = TipoAccion.ROTAR, valor = 30, inicio = 12000, duracion = 2000, x = 1, y = 0, z = 0 },
+                // new Transformacion
+                //     { tipo = TipoAccion.ROTAR, valor = 30, inicio = 13000, duracion = 2000, x = -1, y = 0, z = 0 },
+                // new Transformacion
+                //     { tipo = TipoAccion.ROTAR, valor = 2, inicio = 7000, duracion = 500, x = 1, y = 0, z = 1 },
+                // new Transformacion
+                //     { tipo = TipoAccion.ROTAR, valor = 2, inicio = 10000, duracion = 500, x = -1, y = 0, z = -1 },
+                // new Transformacion
+                //     { tipo = TipoAccion.ROTAR, valor = 2, inicio = 12000, duracion = 500, x = 1, y = 0, z = -1 },
+                // new Transformacion
+                //     { tipo = TipoAccion.ROTAR, valor = 2, inicio = 14000, duracion = 500, x = -1, y = 0, z = 1 },
 
 
                 // // Giramos de nuevo para avanzar hacia la montaña
                 new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 90, inicio = 18000, duracion = 500, x = 0, y = 1, z = 0 }, //
+                    { tipo = TipoAccion.ROTAR, valor = 90, inicio = 18000, duracion = 500, x = 0, y = -1, z = 0 }, //
                 //
                 // // Nos agrandamos para simular que nos acercamos
                 // new Transformacion
@@ -231,15 +236,15 @@ namespace ProyectoOpenTK
                 // // Finalmente, nos movemos hacia la derecha para volver al punto de partida
 
                 new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 23500, duracion = 3000, x = 0, y = 1, z = 0 }, //
+                    { tipo = TipoAccion.ROTAR, valor = 30, inicio = 23500, duracion = 3000, x = 0, y = -1, z = 0 }, //
                 new Transformacion
                     { tipo = TipoAccion.MOVER, valor = 35, inicio = 24000, duracion = 5000, x = 1, y = 0, z = 0 },
 
                 new Transformacion
-                    { tipo = TipoAccion.ROTAR, valor = 60, inicio = 27000, duracion = 500, x = 0, y = 1, z = 0 }, //
+                    { tipo = TipoAccion.ROTAR, valor = 60, inicio = 27000, duracion = 500, x = 0, y = -1, z = 0 }, //
 
                 new Transformacion
-                    { tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 24000, duracion = 3000, x = 1, y = 1, z = 1 },
+                    { tipo = TipoAccion.ESCALAR, valor = 0.5f, inicio = 24000, duracion = 5000, x = 1, y = 1, z = 1 },
             };
 
             Accion accion1 = new Accion("car", transformacionesObjeto1);

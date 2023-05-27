@@ -11,11 +11,13 @@ namespace ProyectoOpenTK.AnimationLogic
     {
         public Libreto libreto { get; set; }
         public Dictionary<string, GraphicObject> objects;
+        private int fpsObjectivoDefault;
 
         public Ejecutor(Libreto libreto, Dictionary<string, GraphicObject> objects)
         {
             this.libreto = libreto;
             this.objects = objects;
+            this.fpsObjectivoDefault = 60;
         }
 
         public async Task Play()
@@ -34,9 +36,15 @@ namespace ProyectoOpenTK.AnimationLogic
 
         private void accionar(GraphicObject objeto, Transformacion transformacion)
         {
-            double fpsObjetivo = 60.0;
+            double fpsObjetivo = this.fpsObjectivoDefault;
             double fps = DisplayDevice.Default.RefreshRate;
             double factorCompensacion = fpsObjetivo / fps;
+
+            Console.WriteLine("fpsObjetivo: " + fpsObjetivo);
+            Console.WriteLine("fps: " + fps);
+            Console.WriteLine("factorCompensacion: " + factorCompensacion);
+
+
             double distancia = transformacion.valor; /* valor de la distancia en píxeles */
             double tiempo = transformacion.duracion / 1000.0; // Convertir a segundos
             double velocity = (distancia / tiempo) * factorCompensacion;
@@ -90,12 +98,17 @@ namespace ProyectoOpenTK.AnimationLogic
                 }
             }
         }
-        
+
         private void accionar2(GraphicObject objeto, Transformacion transformacion)
         {
-            double fpsObjetivo = 60.0;
+            double fpsObjetivo = this.fpsObjectivoDefault;
             double fps = DisplayDevice.Default.RefreshRate;
             double factorCompensacion = fpsObjetivo / fps;
+
+            Console.WriteLine("fpsObjetivo: " + fpsObjetivo);
+            Console.WriteLine("fps: " + fps);
+            Console.WriteLine("factorCompensacion: " + factorCompensacion);
+
             double distancia = transformacion.valor; /* valor de la distancia en píxeles */
             double tiempo = transformacion.duracion / 1000.0; // Convertir a segundos
             double velocity = (distancia / tiempo) * factorCompensacion;
@@ -105,7 +118,7 @@ namespace ProyectoOpenTK.AnimationLogic
             // DateTime tiempoFin = DateTime.Now.AddMilliseconds(transformacion.duracion);
 
             long tiempoFin = tiempoActual + transformacion.duracion;
-            
+
             // Console.WriteLine("velocity " + velocity);
 
             while (tiempoActual <= tiempoFin)
