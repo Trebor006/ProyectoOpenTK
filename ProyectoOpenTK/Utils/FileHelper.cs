@@ -4,6 +4,9 @@ using System.IO;
 using Newtonsoft.Json;
 using ProyectoOpenTK.AnimationLogic;
 using ProyectoOpenTK.GameLogic;
+using Assimp;
+using System.Linq;
+
 
 namespace ProyectoOpenTK.Utils
 {
@@ -60,7 +63,7 @@ namespace ProyectoOpenTK.Utils
             {
                 string jsonString = JsonConvert.SerializeObject(stage, Formatting.Indented);
                 string directoryPath = "./Resources/";
-                string finalPath = Path.Combine(directoryPath, "archivito.json");
+                string finalPath = Path.Combine(directoryPath, "initial_state.json");
 
                 using (StreamWriter sw = new StreamWriter(finalPath, false))
                 {
@@ -96,6 +99,34 @@ namespace ProyectoOpenTK.Utils
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        public static Part LoadFileObj(string objectName)
+        {
+            string directoryPath = "./Resources/";
+            string finalPath = Path.Combine(directoryPath, objectName);
+
+            using (var importer = new AssimpContext())
+            {
+                var scene = importer.ImportFile(finalPath, PostProcessPreset.TargetRealTimeMaximumQuality);
+
+                if (scene != null && scene.HasMeshes)
+                {
+                    var mesh = scene.Meshes[0]; // Suponemos que solo hay un mesh en el archivo
+
+                    var vertices = mesh.Vertices.Select(v => new float[] { v.X, v.Y, v.Z }).SelectMany(v => v)
+                        .ToArray();
+                    var indices = mesh.GetIndices();
+
+                    // Utiliza los datos de vértices e índices según tu estructura y necesidades
+
+                    // Ejemplo:
+                    var part = new Part(vertices, indices, new Point(0, 0, 0));
+                    return part;
+                }
+            }
+
+            return null;
         }
     }
 }

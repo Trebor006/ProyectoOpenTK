@@ -21,7 +21,7 @@ namespace ProyectoOpenTK
 
         private static Dictionary<string, Stage> LoadFromJson()
         {
-            return FileHelper.loadFromJson("./Resources/archivito.json");
+            return FileHelper.loadFromJson("./Resources/initial_state.json");
         }
 
         private static Stage LoadFromJsonString(string fileContent)
@@ -63,7 +63,11 @@ namespace ProyectoOpenTK
 
             juego = new Game(800, 600, "Demo OpenTK");
             juego.stage = LoadFromJsonString(fileContent);
-
+            juego.stage.objects["bird"].resize(-0.05f, -0.05f, -0.05f);
+            juego.stage.objects["bird"].rotate(-50,-1, 0, 0);
+            juego.stage.objects["bird"].rotate(90,0, 0, -1);
+            juego.stage.objects["bird"].moveTo(-10, 10, 0);
+            juego.moveTo(7, 0 , 0);
             generateCheckBoxes(juego.stage);
 
             juego.Run(60);
@@ -163,15 +167,13 @@ namespace ProyectoOpenTK
             foreach (TreeNode node in treeView1.Nodes)
             {
                 var stage = juego.stage;
-                stage.selected = node.Checked;
-                Console.WriteLine(node.Text + " :: " + stage.selected);
+                Console.WriteLine(node.Text);
 
                 foreach (TreeNode nodeObject in node.Nodes)
                 {
                     var objectX = stage.objects[nodeObject.Text];
-                    objectX.selected = nodeObject.Checked;
 
-                    Console.WriteLine("     " + nodeObject.Text + " :: " + objectX.selected);
+                    Console.WriteLine("     " + nodeObject.Text);
 
                     foreach (TreeNode nodePart in nodeObject.Nodes)
                     {

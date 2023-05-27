@@ -99,20 +99,6 @@ namespace ProyectoOpenTK.GameLogic
             Matrix4.Mult(ref rotationMatrix, ref matrix4, out matrix4);
             modelMatrix = matrix4;
         }
-        
-        // public void Rotate(float angle, float x, float y, float z)
-        // {
-        //     // Convertir ángulo a radianes
-        //     var angleInRadians = MathHelper.DegreesToRadians(angle);
-        //
-        //     // Crear la matriz de rotación
-        //     Matrix4 rotationMatrix = Matrix4.CreateFromAxisAngle(new Vector3(x, y, z), angleInRadians);
-        //
-        //     // Ajustar la posición
-        //     var offset = new Vector3(position.X, position.Y, position.Z);
-        //     modelMatrix = Matrix4.CreateTranslation(offset) * rotationMatrix * Matrix4.CreateTranslation(-offset);
-        // }
-
 
     }
 }

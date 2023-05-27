@@ -8,7 +8,6 @@ namespace ProyectoOpenTK.GameLogic
     {
         public Dictionary<string, Part> parts;
 
-        public bool selected { get; set; }
         public Point origin { get; set; }
         public Point position { get; set; }
 
